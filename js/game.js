@@ -110,31 +110,39 @@ window.addEventListener('keyup', (e) => {
  * function binds control images to actual controls on mobile devices
  */
 function bindTouchEvents() {
-    document.getElementById('left').addEventListener("touchstart", () => {
+    document.getElementById('left').addEventListener("touchstart", (e) => {
+        e.preventDefault();
         keyboard.LEFT = true;
     })
-    document.getElementById('left').addEventListener("touchend", () => {
+    document.getElementById('left').addEventListener("touchend", (e) => {
+        e.preventDefault();
         keyboard.LEFT = false;
     })
 
-    document.getElementById('right').addEventListener("touchstart", () => {
+    document.getElementById('right').addEventListener("touchstart", (e) => {
+        e.preventDefault();
         keyboard.RIGHT = true;
     })
-    document.getElementById('right').addEventListener("touchend", () => {
+    document.getElementById('right').addEventListener("touchend", (e) => {
+        e.preventDefault();
         keyboard.RIGHT = false;
     })
 
-    document.getElementById('up').addEventListener("touchstart", () => {
+    document.getElementById('up').addEventListener("touchstart", (e) => {
+        e.preventDefault();
         keyboard.UP = true;
     })
-    document.getElementById('up').addEventListener("touchend", () => {
+    document.getElementById('up').addEventListener("touchend", (e) => {
+        e.preventDefault();
         keyboard.UP = false;
     })
 
-    document.getElementById('throw').addEventListener("touchstart", () => {
+    document.getElementById('throw').addEventListener("touchstart", (e) => {
+        e.preventDefault();
         keyboard.SPACE = true;
     })
-    document.getElementById('throw').addEventListener("touchend", () => {
+    document.getElementById('throw').addEventListener("touchend", (e) => {
+        e.preventDefault();
         keyboard.SPACE = false;
     })
 }
