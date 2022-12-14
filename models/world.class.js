@@ -23,7 +23,9 @@ class World {
     gameInterval;
     gameGoesOn = true;
 
+    sound = true
     gameMusic = new Audio('audio/Game_music.mp3');
+    // bottleSplash = new Audio('')
 
 
     constructor(canvas) {
@@ -33,16 +35,24 @@ class World {
         this.draw();
         this.setWorld();
         this.runGame();
+        this.playGameMusic();
+    }
 
-        this.gameMusic.volume = 0.05;
-        this.gameMusic.play();
-        setInterval(() => {
-            if (!this.gameGoesOn) {
-                this.gameMusic.pause();
+ /**
+  * function plays game music, if music is turned on
+  */
+    playGameMusic() {
+        setTimeout(() => {
+            if (this.sound) {
+                this.gameMusic.volume = 0.05;
+                this.gameMusic.play();
+                setInterval(() => {
+                    if (!this.gameGoesOn) {
+                        this.gameMusic.pause();
+                    }
+                }, 1000 / 60);
             }
-        }, 1000 / 60);
-
-
+        }, 100);
     }
 
 

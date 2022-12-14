@@ -14,13 +14,13 @@ function initGame() {
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+    world.sound = sound;
 }
 
 
 
 
 function turnVolume() {
-
     if (sound) {
         document.getElementById('soundBtn').src='img/own_graphics/mute.png';
         sound = false;
@@ -28,7 +28,6 @@ function turnVolume() {
         document.getElementById('soundBtn').src='img/own_graphics/unmute.png';
         sound = true;
     }
-
 }
 
 
