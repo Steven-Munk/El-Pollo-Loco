@@ -89,7 +89,6 @@ class Character extends MoveableObject {
 
         this.applyGravity();
         this.animate();
-
     }
 
 
@@ -160,7 +159,7 @@ class Character extends MoveableObject {
      */
     playPepeImages() {
         this.renderPepeIdle();
-        this.renderPepeMoving();
+        this.renderPepeActions();
     }
 
 
@@ -191,26 +190,58 @@ class Character extends MoveableObject {
     /**
      * function renders Pepe whenever he is doing something
      */
-    renderPepeMoving() {
+    renderPepeActions() {
         this.mainI = setInterval(() => {
             if (this.isDead()) {
-                this.waitingTime = 0;
-                this.playPepeGrunt();
-                this.stopPepeGrunt();
-                this.playAnimation(this.IMAGES_DEAD);
+                this.renderPepeDead();
             } else if (this.noRecentHit === false) {
-                this.waitingTime = 0;
-                this.playPepeGrunt();
-                this.playAnimation(this.IMAGES_HURT);
+                this.renderPepeHit();
             } else if (this.isAboveGround()) {
-                this.waitingTime = 0;
-                this.playJumpSound();
-                this.playAnimation(this.IMAGES_JUMPING);
+                this.renderPepeJump();
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                this.waitingTime = 0;
-                this.playAnimation(this.IMAGES_WALKING);
+                this.renderPepeWalking();
             }
         }, 1000 / 15);
+    }
+
+
+    /**
+     * function renders Pepes death
+     */
+    renderPepeDead() {
+        this.waitingTime = 0;
+        this.playPepeGrunt();
+        this.stopPepeGrunt();
+        this.playAnimation(this.IMAGES_DEAD);
+    }
+
+
+    /**
+     * function renders Pepe being hit
+     */
+    renderPepeHit() {
+        this.waitingTime = 0;
+        this.playPepeGrunt();
+        this.playAnimation(this.IMAGES_HURT);
+    }
+
+
+    /**
+     * function renders Pepe jumping
+     */
+    renderPepeJump() {
+        this.waitingTime = 0;
+        this.playJumpSound();
+        this.playAnimation(this.IMAGES_JUMPING);
+    }
+
+
+    /**
+     * function renders Pepe walking
+     */
+    renderPepeWalking() {
+        this.waitingTime = 0;
+        this.playAnimation(this.IMAGES_WALKING);
     }
 
 

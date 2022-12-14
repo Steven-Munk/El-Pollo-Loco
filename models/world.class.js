@@ -30,7 +30,6 @@ class World {
         new Audio('audio/win.mp3'),
         new Audio('audio/Pepe_throw.mp3'),
         new Audio('audio/splash.mp3')
-
     ];
 
 
@@ -44,9 +43,10 @@ class World {
         this.playGameMusic();
     }
 
- /**
-  * function plays game music, if music is turned on
-  */
+
+    /**
+     * function plays game music, if music is turned on
+     */
     playGameMusic() {
         setTimeout(() => {
             if (this.sound) {
@@ -511,8 +511,8 @@ class World {
 
 
     /**
- * function shows the lose for player
- */
+     * function shows the lose for player
+     */
     showLose() {
         this.playGameSound(0);
         setTimeout(() => {

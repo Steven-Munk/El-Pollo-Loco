@@ -1,5 +1,4 @@
 class CoinBar extends StatusBars {
-
     IMAGES_COIN_BAR = [
         'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/0.png',
         'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/20.png',
@@ -18,8 +17,6 @@ class CoinBar extends StatusBars {
         this.height = 45;
         this.width = 160;
 
-        this.updateStatusBar(this.IMAGES_COIN_BAR, 0);
-        
+        this.updateStatusBar(this.IMAGES_COIN_BAR, 0); 
     }
-
 }

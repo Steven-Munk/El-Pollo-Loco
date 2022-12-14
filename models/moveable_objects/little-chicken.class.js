@@ -25,17 +25,33 @@ class LilChicken extends MoveableObject {
 
     }
 
+    /**
+     * function animates and moves the chicken
+     */
     animate() {
-        
+        this.moveChicken();
+        this.animateChicken();
+    }
+
+
+    /**
+     * function moves the chicken
+     */
+    moveChicken() {
         setInterval(() => {
             if (this.chickenAlive) {
                 this.moveLeft();
             }
         }, 1000 / 60);
+    }
 
+
+    /**
+     * function animates the chicken
+     */
+    animateChicken() {
         setInterval(() => {
             if (this.chickenAlive) {
-                this.moveLeft();
                 this.playAnimation(this.IMAGES_WALKING);
             } else {
                 this.playAnimation(this.IMAGE_DEAD);

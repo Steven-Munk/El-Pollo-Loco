@@ -38,7 +38,7 @@
 
 </head>
 
-<body onload="animatePlayBtn(), bindTouchEvents(), showVolume()">
+<body onload="initStartscreen()">
 
     <h1>El Pollo Loco</h1>
 
@@ -50,7 +50,6 @@
     
             <img id="soundBtn" class="sound-btn" onclick="turnVolume()" src="img/own_graphics/unmute.png">
         </div>
-
 
         <canvas id="canvas" width="720px" height="480px"></canvas>
 
@@ -72,16 +71,12 @@
             <h2 id="lose" class="result-msg">YOU LOST!</h2>
         </div>
 
-
         <div id="endscreenBtn" class="endscreen-btn d-none">
             <img class="end-btn" onclick="restartGame()" src="img/own_graphics/restart_btn.png">
             <img class="end-btn" onclick="goToStartMenu()" src="img/own_graphics/go_back_btn.png">
         </div>
 
-
     </div>
-
-
 
 </body>
 

@@ -1,5 +1,4 @@
 class ThrownBottle extends MoveableObject {
-
     IMAGES_BOTTLE_ROTATION = [
         'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
         'img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
@@ -20,7 +19,6 @@ class ThrownBottle extends MoveableObject {
 
 
     constructor(x, y) {
-
         super().loadImage(this.IMAGES_BOTTLE_ROTATION[0]);
         this.loadImages(this.IMAGES_BOTTLE_ROTATION);
         this.loadImages(this.IMAGES_BOTTLE_SPALSH);

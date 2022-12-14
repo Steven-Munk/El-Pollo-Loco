@@ -1,5 +1,4 @@
 class Cloud1 extends MoveableObject{
-
     constructor() {
         super().loadImage('img/5_background/layers/4_clouds/1.png');
 
@@ -17,5 +16,4 @@ class Cloud1 extends MoveableObject{
             this.moveLeft();
         }, 1000 / 60)
     }
-
 }

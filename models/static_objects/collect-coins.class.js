@@ -1,5 +1,4 @@
 class Coin extends AllObjects {
-
     constructor() {
         super().loadImage('img/8_coin/coin_1.png');
 
@@ -8,5 +7,4 @@ class Coin extends AllObjects {
         this.width = 80;
         this.height = 80;
     }
-    
 }

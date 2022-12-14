@@ -95,20 +95,20 @@ class MoveableObject extends AllObjects {
      * @param {Object} mo 
      * @returns true if object, tht calls this function ist colliding with object in parameter
      */
-    isColliding(mo) {
+    isColliding(mo) { // This is the longest function i have, but i dont think i can shorten it!
         if (this instanceof Character) {
-            return this.x + this.width - 20 > mo.x && // the numbers define pepes real hitbox
-                this.x + 25 < mo.x + mo.width &&      // the numbers define pepes real hitbox 
-                this.y + this.height > mo.y + 10 &&   // the numbers define pepes real hitbox
-                this.y + 115 < mo.y + mo.height       // the numbers define pepes real hitbox
+            return this.x + this.width - 20 > mo.x &&   // the numbers define pepes real hitbox
+            this.x + 25 < mo.x + mo.width &&            // the numbers define pepes real hitbox 
+            this.y + this.height > mo.y + 10 &&         // the numbers define pepes real hitbox
+            this.y + 115 < mo.y + mo.height             // the numbers define pepes real hitbox
         } else if (mo instanceof Endboss) {
-            return this.x + this.width > mo.x + 20 && // the numbers define Endboss real hitbox
-                this.x < mo.x + mo.width &&
-                this.y + this.height > mo.y + 130     // the numbers define Endboss real hitbox
+            return this.x + this.width > mo.x + 20 &&   // the numbers define Endboss real hitbox
+            this.x < mo.x + mo.width &&
+            this.y + this.height > mo.y + 130           // the numbers define Endboss real hitbox
         } else {
             return this.x + this.width > mo.x &&
-                this.x < mo.x + mo.width &&
-                this.y + this.height > mo.y
+            this.x < mo.x + mo.width &&
+            this.y + this.height > mo.y
         }
     }
 
@@ -120,7 +120,7 @@ class MoveableObject extends AllObjects {
     jumpsOn(mo) {
         return this.x + this.width > mo.x &&
             this.x < mo.x + mo.width &&
-            this.y + this.height + 5 >= mo.y - 5 &&    // 20px vertical Hitbox on Head of enemy
+            this.y + this.height + 5 >= mo.y - 5 &&           // 20px vertical Hitbox on Head of enemy
             this.y + this.height - 5 <= mo.y + 5 &&           // 20px vertical Hitbox on Head of enemy
             this.speedY < 0;                                  // Character has to fall
     }

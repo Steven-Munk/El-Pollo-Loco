@@ -10,8 +10,12 @@ class Endboss extends MoveableObject {
     firstEncounter = true;
     noRecentHit = true;
     mainI;
-    energy = 2; // dont get confused by the 2, the boss dies after 3 hits
+    energy = 2; // dont get confused by the 2, the boss dies after 3 hits!
     died = false;
+
+    bossIsWalking = false;
+    world;
+
 
     IMAGES_ALERT = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
@@ -54,8 +58,9 @@ class Endboss extends MoveableObject {
         'img/4_enemie_boss_chicken/5_dead/G26.png'
     ];
 
-    world;
+
     bossScream = new Audio('audio/Boss_hurt.mp3');
+
 
     constructor() {
         super().loadImage(this.IMAGES_ALERT[0]);
@@ -68,33 +73,54 @@ class Endboss extends MoveableObject {
         setTimeout(() => {
             this.animate();
         }, 1000)
-
     }
 
-    bossIsWalking = false;
 
     /**
      * function animates the start and the walk of boss
      */
     animate() {
         this.mainI = setInterval(() => {
-            if (this.i < 10) {
-                this.playAnimation(this.IMAGES_ALERT);
-            } else if (this.i < 14) {
-                this.playAnimation(this.IMAGES_ATTACK);
-            } else if (!this.firstEncounter) {
-                this.bossWalking();
-            }
-            this.i++;
-            if (this.world.character.x > 2600 && this.firstEncounter) {
-                this.i = 0;
-                setTimeout(() => {
-                    this.playBossScream();
-                }, 500);
-                this.firstEncounter = false;
-            }
+            this.playStartAnimation();
+            this.checkFirstEncounter();
         }, 1000 / 6);
+        this.moveBoss();
+    }
 
+
+    /**
+     * function plays start animation of boss
+     */
+    playStartAnimation() {
+        if (this.i < 10) {
+            this.playAnimation(this.IMAGES_ALERT);
+        } else if (this.i < 14) {
+            this.playAnimation(this.IMAGES_ATTACK);
+        } else if (!this.firstEncounter) {
+            this.bossWalking();
+        }
+        this.i++;
+    }
+
+
+    /**
+     * function checks the first encounter of pepe and boss
+     */
+    checkFirstEncounter() {
+        if (this.world.character.x > 2600 && this.firstEncounter) {
+            this.i = 0;
+            setTimeout(() => {
+                this.playBossScream();
+            }, 500);
+            this.firstEncounter = false;
+        }
+    }
+
+
+    /**
+     * funciton moves boss to the left
+     */
+    moveBoss() {
         setInterval(() => {
             if (this.bossIsWalking) {
                 this.moveLeft();
@@ -103,6 +129,9 @@ class Endboss extends MoveableObject {
     }
 
 
+    /**
+     * funciton plays scream of boss
+     */
     playBossScream() {
         this.bossScream.volume = 0.2;
         if (this.world.sound) {

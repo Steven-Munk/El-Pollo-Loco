@@ -1,5 +1,4 @@
 class CollectBottle extends AllObjects {
-
     constructor() {
         super().loadImage('img/6_salsa_bottle/salsa_bottle.png');
 
@@ -8,5 +7,4 @@ class CollectBottle extends AllObjects {
         this.width = 80;
         this.height = 80;
     }
-
 }

@@ -7,8 +7,28 @@ let playBtnBig = true;
 
 let sound = true;
 
+
+function initStartscreen() {
+    animatePlayBtn();
+    bindTouchEvents();
+    showVolume();
+}
+
+
 /**
- * Initialization 
+ * function starts the game from start screen
+ */
+function startGame() {
+    clearInterval(playBtnI);
+    document.getElementById('startScreen').classList.add("d-none");
+    document.getElementById('canvas').style = 'display: block';
+    document.getElementById('controllBtns').classList.remove("d-none");
+    initGame();
+}
+
+
+/**
+ * Initialization of the game
  */
 function initGame() {
     initLevel();
@@ -139,18 +159,6 @@ function bounceTheBtn() {
         document.getElementById('playBtn').style = 'transform: scale(1)';
         playBtnBig = true;
     }
-}
-
-
-/**
- * function starts the game from start screen
- */
-function startGame() {
-    clearInterval(playBtnI);
-    document.getElementById('startScreen').classList.add("d-none");
-    document.getElementById('canvas').style = 'display: block';
-    document.getElementById('controllBtns').classList.remove("d-none");
-    initGame();
 }
 
 

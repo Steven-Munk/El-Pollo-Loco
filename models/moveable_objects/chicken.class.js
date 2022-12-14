@@ -23,20 +23,36 @@ class Chicken extends MoveableObject {
         this.speed = 0.2 + Math.random() * 0.6;
 
         this.animate();
-
     }
 
+
+    /**
+     * function animates and moves the chicken
+     */
     animate() {
-        
+        this.moveChicken();
+        this.animateChicken();
+    }
+
+
+    /**
+     * function moves the chicken
+     */
+    moveChicken() {
         setInterval(() => {
             if (this.chickenAlive) {
                 this.moveLeft();
             }
         }, 1000 / 60);
+    }
 
+
+    /**
+     * function animates the chicken
+     */
+    animateChicken() {
         setInterval(() => {
             if (this.chickenAlive) {
-                this.moveLeft();
                 this.playAnimation(this.IMAGES_WALKING);
             } else {
                 this.playAnimation(this.IMAGE_DEAD);

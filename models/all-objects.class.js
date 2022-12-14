@@ -47,17 +47,33 @@ class AllObjects {
      */
     drawHitbox(ctx) {
         if (this instanceof Chicken || this instanceof LilChicken || this instanceof Endboss || this instanceof Coin || this instanceof CollectBottle) {
-            ctx.beginPath();
-            ctx.lineWidth = '2';
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
+            this.drawNormalHitbox();
         } else if (this instanceof Character) {
-            ctx.beginPath();
-            ctx.lineWidth = '2';
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.x + 25, this.y + 115, this.width - 45, this.height - 125);
-            ctx.stroke();
+            this.drawPepeHitbox();
         }
+    }
+
+
+    /**
+     * function draws hitbox for all moveable objects but pepe
+     */
+    drawNormalHitbox() {
+        ctx.beginPath();
+        ctx.lineWidth = '2';
+        ctx.strokeStyle = 'blue';
+        ctx.rect(this.x, this.y, this.width, this.height);
+        ctx.stroke();
+    }
+
+
+    /**
+     * function draws hitbox for pepe
+     */
+    drawPepeHitbox() {
+        ctx.beginPath();
+        ctx.lineWidth = '2';
+        ctx.strokeStyle = 'blue';
+        ctx.rect(this.x + 25, this.y + 115, this.width - 45, this.height - 125);
+        ctx.stroke();
     }
 }
