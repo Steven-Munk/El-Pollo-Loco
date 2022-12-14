@@ -1,0 +1,264 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0px;
+
+    background-image: url('img/own_graphics/canvas_backgroung.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    font-family: 'Press Start 2P';
+}
+
+
+h1 {
+    width: 720px;
+    height: 80px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid white;
+    border-bottom: 0px;
+    box-shadow: 0 0 10px 0 black;
+
+    color: rgb(21, 66, 36);
+    font-size: 50px;
+    margin: 0px;
+    text-shadow: 4px 4px 0 rgb(77, 133, 91);
+    background-color: rgb(30, 177, 96);
+}
+
+
+.container {
+    position: relative;
+    width: 720px;
+    height: 480px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid white;
+    box-shadow: 0 0 10px 0 black;
+}
+
+
+.start-screen {
+    width: inherit;
+    height: inherit;
+
+
+    display: flex;
+    position: relative;
+
+    background-color: rgb(34, 34, 34);
+    background-image: url('img/9_intro_outro_screens/start/startscreen_1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: -90px;
+
+    border: 2px solid white;
+    box-shadow: 0 0 10px 0 black;
+}
+
+
+.play-btn {
+    position: absolute;
+    top: 25px;
+    left: 40px;
+    cursor: pointer;
+    transition: ease-in-out 1000ms;
+}
+
+
+.sound-btn {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+
+    width: 60px;
+    height: 60px;
+    transition: ease-in-out 75ms;
+    cursor: pointer;
+}
+
+
+.sound-btn:hover {
+    transform: scale(0.9);
+}
+
+
+canvas {
+    position: absolute;
+    background-color: black;
+    display: none;
+}
+
+
+.controll-btns {
+    z-index: 999;
+
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.grayscreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(34, 34, 34, 0.5);
+}
+
+
+.game-over-img {
+    width: inherit;
+    height: inherit;
+}
+
+
+.result-msg {
+    color: rgb(255, 204, 24);
+    text-shadow: 5px 5px rgb(158, 60, 26);
+    font-size: 70px;
+    display: none;
+}
+
+
+.endscreen-btn {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    transition: ease-in-out 225ms;
+    opacity: 0;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-top: 100px;
+}
+
+
+.end-btn {
+    transition: ease-in-out 75ms;
+    cursor: pointer;
+}
+
+
+.end-btn:hover {
+    transform: scale(0.95);
+}
+
+
+.d-none {
+    display: none;
+}
+
+
+/*Smartphones ---------------- */
+@media only screen and (max-width: 720px) {
+
+    body {
+        background-image: linear-gradient(0deg,#E98D43, #0B9FC9);
+    }
+
+
+    .start-screen {
+        background-position: center;
+        border: none;
+        box-shadow: none;
+    }
+
+
+    h1 {
+        display: none;
+    }
+
+
+    .container {
+        width: 100%;
+        height: 480px;
+        border: none;
+        box-shadow: none;
+    }
+
+
+    .controll-btns {
+        transform: scale(0.9);
+        bottom: 10px;
+        justify-content: center;
+        gap: 180px;
+    }
+
+
+    canvas {
+        width: 100%;
+    }
+
+
+    .result-msg {
+        font-size: 50px;
+    }
+}
+
+/*Smartphones ---------------- */
+@media only screen and (max-height: 560px) {
+
+    body {
+        background-image: linear-gradient(0deg,#E98D43, #0B9FC9);
+    }
+
+
+    .start-screen {
+        background-position: center;
+        border: none;
+        box-shadow: none;
+    }
+
+
+    h1 {
+        display: none;
+    }
+
+
+    .container {
+        height: 100vh;
+        border: none;
+        box-shadow: none;
+    }
+
+
+    .controll-btns {
+        transform: scale(0.9);
+        bottom: 10px;
+        justify-content: center;
+        gap: 180px;
+    }
+
+
+    canvas {
+        height: 100vh;
+    }
+
+
+    .result-msg {
+        font-size: 50px;
+    }
+}
