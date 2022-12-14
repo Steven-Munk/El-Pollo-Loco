@@ -74,6 +74,7 @@ class Character extends MoveableObject {
 
     walking_sound = new Audio('audio/Pepe_Walking.mp3');
     pepeGrunt = new Audio('audio/Pepe_dmg_2.mp3');
+    pepeJumpSound = new Audio('audio/Pepe_jump.mp3');
 
 
     constructor() {
@@ -203,6 +204,7 @@ class Character extends MoveableObject {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
                 this.waitingTime = 0;
+                this.playJumpSound();
                 this.playAnimation(this.IMAGES_JUMPING);
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                 this.waitingTime = 0;
@@ -230,5 +232,16 @@ class Character extends MoveableObject {
         setTimeout(() => {
             this.pepeGrunt.pause();
         }, 500);
+    }
+
+
+    /**
+     * function plays pepes jump sound, if sound is on and pepe is just jumping
+     */
+    playJumpSound() {
+        this.pepeJumpSound.volume = 0.2;
+        if (this.world.sound && this.speedY > 0) {
+            this.pepeJumpSound.play();
+        }
     }
 }

@@ -28,7 +28,8 @@ class World {
     gameSounds = [
         new Audio('audio/lose.mp3'),
         new Audio('audio/win.mp3'),
-        new Audio('audio/Pepe_throw.mp3')
+        new Audio('audio/Pepe_throw.mp3'),
+        new Audio('audio/splash.mp3')
 
     ];
 
@@ -349,6 +350,7 @@ class World {
      */
     bottleHit(bottle, enemy) {
         bottle.bottleHitSomething = true;
+        this.playGameSound(3);
         if (this.bottleHitBoss(bottle)) {
             this.level.enemies[0].bossGetsHit();
         } else {

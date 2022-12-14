@@ -55,6 +55,7 @@ class Endboss extends MoveableObject {
     ];
 
     world;
+    bossScream = new Audio('audio/Boss_hurt.mp3');
 
     constructor() {
         super().loadImage(this.IMAGES_ALERT[0]);
@@ -87,6 +88,9 @@ class Endboss extends MoveableObject {
             this.i++;
             if (this.world.character.x > 2600 && this.firstEncounter) {
                 this.i = 0;
+                setTimeout(() => {
+                    this.playBossScream();
+                }, 500);
                 this.firstEncounter = false;
             }
         }, 1000 / 6);
@@ -96,6 +100,14 @@ class Endboss extends MoveableObject {
                 this.moveLeft();
             }
         }, 1000 / 60);
+    }
+
+
+    playBossScream() {
+        this.bossScream.volume = 0.2;
+        if (this.world.sound) {
+            this.bossScream.play();
+        }
     }
 
 
@@ -113,6 +125,7 @@ class Endboss extends MoveableObject {
      */
     bossAttacks() {
         this.bossIsWalking = false;
+        this.playBossScream();
         clearInterval(this.mainI);
         let i1 = setInterval(() => {
             this.playAnimation(this.IMAGES_ATTACK);
@@ -129,6 +142,7 @@ class Endboss extends MoveableObject {
      */
     bossGetsHit() {
         this.bossIsWalking = false;
+        this.playBossScream();
         clearInterval(this.mainI);
         if (this.energy > 0 && this.noRecentHit) {
             this.bossLosesEnergy();
