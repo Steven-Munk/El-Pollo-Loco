@@ -33,7 +33,6 @@ class ThrownBottle extends MoveableObject {
         this.applyGravity();
         this.bottleMovement();
         this.animate();
-
     }
 
 

@@ -23,9 +23,9 @@ function initGame() {
  */
 function showVolume() {
     if (sound) {
-        document.getElementById('soundBtn').src='img/own_graphics/mute.png';
-    } else {
         document.getElementById('soundBtn').src='img/own_graphics/unmute.png';
+    } else {
+        document.getElementById('soundBtn').src='img/own_graphics/mute.png';
     }
 }
 

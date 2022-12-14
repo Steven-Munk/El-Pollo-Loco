@@ -25,7 +25,12 @@ class World {
 
     sound = true
     gameMusic = new Audio('audio/Game_music.mp3');
-    loseSound = new Audio('audio/lose.mp3');
+    gameSounds = [
+        new Audio('audio/lose.mp3'),
+        new Audio('audio/win.mp3'),
+        new Audio('audio/Pepe_throw.mp3')
+
+    ];
 
 
     constructor(canvas) {
@@ -210,6 +215,7 @@ class World {
     throwOnSpace() {
         if (this.keyboard.SPACE && this.bottleAmmo > 0) {
             keyboard.SPACE = false;
+            this.playGameSound(2);
             let newBottle = new ThrownBottle(this.character.x + 60, this.character.y + 100)
             this.allThrownBottles.push(newBottle);
             this.bottleAmmo--;
@@ -495,6 +501,7 @@ class World {
      * function shows the win for player
      */
     showWin() {
+        this.playGameSound(1);
         setTimeout(() => {
             document.getElementById('win').style = 'display: block';
         }, 1500);
@@ -505,17 +512,17 @@ class World {
  * function shows the lose for player
  */
     showLose() {
-        this.playLoseSound(),
+        this.playGameSound(0);
         setTimeout(() => {
             document.getElementById('lose').style = 'display: block';
         }, 1500);
     }
 
-
-    playLoseSound() {
+    playGameSound(number) {
         if (this.sound) {
-            this.loseSound.volume = 0.2;
-            this.loseSound.play();
+            let gameSound = this.gameSounds[number];
+            gameSound.volume = 0.2;
+            gameSound.play();
         }
     }
 }
