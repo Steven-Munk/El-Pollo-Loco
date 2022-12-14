@@ -25,7 +25,7 @@ class World {
 
     sound = true
     gameMusic = new Audio('audio/Game_music.mp3');
-    // bottleSplash = new Audio('')
+    loseSound = new Audio('audio/lose.mp3');
 
 
     constructor(canvas) {
@@ -505,8 +505,17 @@ class World {
  * function shows the lose for player
  */
     showLose() {
+        this.playLoseSound(),
         setTimeout(() => {
             document.getElementById('lose').style = 'display: block';
         }, 1500);
+    }
+
+
+    playLoseSound() {
+        if (this.sound) {
+            this.loseSound.volume = 0.2;
+            this.loseSound.play();
+        }
     }
 }

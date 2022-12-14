@@ -73,6 +73,7 @@ class Character extends MoveableObject {
     ]
 
     walking_sound = new Audio('audio/Pepe_Walking.mp3');
+    pepeGrunt = new Audio('audio/Pepe_dmg_2.mp3');
 
 
     constructor() {
@@ -193,9 +194,12 @@ class Character extends MoveableObject {
         this.mainI = setInterval(() => {
             if (this.isDead()) {
                 this.waitingTime = 0;
+                this.playPepeGrunt();
+                this.stopPepeGrunt();
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.noRecentHit === false) {
                 this.waitingTime = 0;
+                this.playPepeGrunt();
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
                 this.waitingTime = 0;
@@ -205,5 +209,26 @@ class Character extends MoveableObject {
                 this.playAnimation(this.IMAGES_WALKING);
             }
         }, 1000 / 15);
+    }
+
+
+    /**
+     * function plays pepes hit sound, if sound is on
+     */
+    playPepeGrunt() {
+        this.pepeGrunt.volume = 0.2;
+        if (this.world.sound && this.noRecentHit === false) {
+            this.pepeGrunt.play();
+        }
+    }
+
+
+    /**
+     * function stops pepes grunt on his death
+     */
+    stopPepeGrunt() {
+        setTimeout(() => {
+            this.pepeGrunt.pause();
+        }, 500);
     }
 }

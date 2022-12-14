@@ -18,8 +18,21 @@ function initGame() {
 }
 
 
+/**
+ * function displays correct volume setting
+ */
+function showVolume() {
+    if (sound) {
+        document.getElementById('soundBtn').src='img/own_graphics/mute.png';
+    } else {
+        document.getElementById('soundBtn').src='img/own_graphics/unmute.png';
+    }
+}
 
 
+/**
+ * function sets the volume and changes volume icon
+ */
 function turnVolume() {
     if (sound) {
         document.getElementById('soundBtn').src='img/own_graphics/mute.png';
@@ -29,8 +42,6 @@ function turnVolume() {
         sound = true;
     }
 }
-
-
 
 
 /**
