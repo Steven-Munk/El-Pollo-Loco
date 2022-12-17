@@ -202,3 +202,16 @@ function resetEndscreen() {
     document.getElementById('gameOverImg').classList.remove("d-none");
     document.getElementById('endscreenBtn').style = "opacity: 0";
 }
+
+let settingsClosed = true;
+
+function showSettings() {
+    if (settingsClosed) {
+        document.getElementById('settings').style="display: flex";
+        settingsClosed = false;
+    } else {
+        document.getElementById('settings').style="display: none";
+        settingsClosed = true;
+    }
+
+}
