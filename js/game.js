@@ -27,6 +27,7 @@ function startGame() {
     document.getElementById('settings').style="display: none";
     settingsClosed = true;
     initGame();
+    document.getElementById('settings').style="left: 730px";
 }
 
 
@@ -242,10 +243,10 @@ function resetEndscreen() {
 
 function showSettings() {
     if (settingsClosed) {
-        document.getElementById('settings').style="display: flex";
+        document.getElementById('settings').style="left: 210px";
         settingsClosed = false;
     } else {
-        document.getElementById('settings').style="display: none";
+        document.getElementById('settings').style="left: 730px";
         settingsClosed = true;
     }
 
