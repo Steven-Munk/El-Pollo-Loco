@@ -6,6 +6,7 @@ let playBtnI;
 let playBtnBig = true;
 
 let sound = true;
+let settingsClosed = true;
 
 
 function initStartscreen() {
@@ -23,6 +24,8 @@ function startGame() {
     document.getElementById('startScreen').classList.add("d-none");
     document.getElementById('canvas').style = 'display: block';
     document.getElementById('controllBtns').classList.remove("d-none");
+    document.getElementById('settings').style="display: none";
+    settingsClosed = true;
     initGame();
 }
 
@@ -203,7 +206,6 @@ function resetEndscreen() {
     document.getElementById('endscreenBtn').style = "opacity: 0";
 }
 
-let settingsClosed = true;
 
 function showSettings() {
     if (settingsClosed) {

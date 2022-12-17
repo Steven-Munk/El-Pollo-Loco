@@ -520,6 +520,11 @@ class World {
         }, 1500);
     }
 
+
+    /**
+     * function plays sound from sound array
+     * @param {number} number 
+     */
     playGameSound(number) {
         if (this.sound) {
             let gameSound = this.gameSounds[number];
