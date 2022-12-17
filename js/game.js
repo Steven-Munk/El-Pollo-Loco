@@ -108,20 +108,26 @@ window.addEventListener('keyup', (e) => {
     }
 })
 
+function u() {
+    let z = Math.round(Math.random());
+    console.log(z);
+}
 
 /**
  * function binds control images to actual controls on mobile devices
  */
 function bindTouchEvents() {
-    document.getElementById('left').addEventListener("touchstart", (e) => {
-        e.preventDefault();
-        keyboard.LEFT = true;
-    })
-    document.getElementById('left').addEventListener("touchend", (e) => {
-        e.preventDefault();
-        keyboard.LEFT = false;
-    })
+    bindTouchRight();
+    bindTouchLeft();
+    bindTouchUp();
+    bindTouchSpace();
+}
 
+
+/**
+ * function binds Left image to left
+ */
+function bindTouchRight() {
     document.getElementById('right').addEventListener("touchstart", (e) => {
         e.preventDefault();
         keyboard.RIGHT = true;
@@ -130,7 +136,28 @@ function bindTouchEvents() {
         e.preventDefault();
         keyboard.RIGHT = false;
     })
+}
 
+
+/**
+ * function binds Right image to right
+ */
+function bindTouchLeft() {
+    document.getElementById('left').addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        keyboard.LEFT = true;
+    })
+    document.getElementById('left').addEventListener("touchend", (e) => {
+        e.preventDefault();
+        keyboard.LEFT = false;
+    })
+}
+
+
+/**
+ * function binds Up image to up
+ */
+function bindTouchUp() {
     document.getElementById('up').addEventListener("touchstart", (e) => {
         e.preventDefault();
         keyboard.UP = true;
@@ -139,7 +166,13 @@ function bindTouchEvents() {
         e.preventDefault();
         keyboard.UP = false;
     })
+}
 
+
+/**
+ * function binds Space image to space
+ */
+function bindTouchSpace() {
     document.getElementById('throw').addEventListener("touchstart", (e) => {
         e.preventDefault();
         keyboard.SPACE = true;
