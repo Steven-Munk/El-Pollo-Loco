@@ -324,11 +324,20 @@ function displayImgameSettings() {
 
 
 
+let gameRuns = true;
 
 
 
 function showSettingsIngame() {
-    pauseGame();
+    if (gameRuns) {
+        world.stopTheGame();
+        gameRuns = false;
+    } else {
+        world.draw();
+        world.runGame();
+        gameRuns = true;
+    }
+
     showSettings();
 }
 
