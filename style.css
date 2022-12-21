@@ -142,6 +142,14 @@ h1 {
 }
 
 
+.settings-position {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+
 h2 {
     font-size: 30px;
     color: #2b2b2b;
@@ -333,51 +341,6 @@ canvas {
 
 
 
-
-
-
-
-/*Smartphones ---------------- */
-@media only screen and (max-width: 720px) {
-
-    body {
-        background-image: linear-gradient(0deg, #E98D43, #0B9FC9);
-    }
-
-
-    .start-screen {
-        background-position: center;
-        border: none;
-        box-shadow: none;
-    }
-
-
-    h1 {
-        display: none;
-    }
-
-
-    .container {
-        width: 100%;
-        border: none;
-        box-shadow: none;
-    }
-
-
-    .controll-btns {
-        transform: scale(0.9);
-        bottom: 10px;
-        justify-content: center;
-        gap: 180px;
-    }
-
-
-    .result-msg {
-        font-size: 50px;
-    }
-}
-
-
 /*Smartphones ---------------- */
 @media only screen and (max-height: 560px) {
     h1 {
@@ -386,8 +349,25 @@ canvas {
 }
 
 
-/*Smartphones ---------------- */
+
 @media only screen and (max-height: 480px) {
+    .container {
+        height: 100vh;
+    }
+}
+
+
+
+@media only screen and (max-width: 720px) {
+    .container {
+        width: 100%;
+    }
+}
+
+
+
+@media only screen and (max-height: 480px),
+only screen and (max-width: 720px) {
 
     body {
         background-image: linear-gradient(0deg, #E98D43, #0B9FC9);
@@ -402,9 +382,31 @@ canvas {
 
 
     .container {
-        height: 100vh;
         border: none;
         box-shadow: none;
+    }
+
+
+    .settings {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        width: 65%;
+        height: 65%;
+        gap: 0px;
+    }
+
+
+    .settings-position {
+        flex-direction: row;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .controll-settings {
+        flex-direction: column;
+        gap: 10px;
     }
 
 
@@ -425,4 +427,5 @@ canvas {
         transform: scale(0.8);
         margin-top: 50px;
     }
+
 }
