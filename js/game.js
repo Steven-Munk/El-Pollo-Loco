@@ -9,6 +9,7 @@ let sound = true;
 let settingsClosed = true;
 
 
+
 function initStartscreen() {
     animatePlayBtn();
     bindTouchEvents();
@@ -239,6 +240,9 @@ function resetEndscreen() {
     document.getElementById('gameOverImg').classList.remove("d-none");
     document.getElementById('endscreenBtn').style = "opacity: 0";
 }
+
+
+
 
 
 function showSettings() {

@@ -44,6 +44,9 @@ class World {
     }
 
 
+    /**
+     * function plays game music, if music is turned on
+     */
     playGameMusic() {
         setTimeout(() => {
             if (this.sound) {
@@ -59,6 +62,9 @@ class World {
     }
 
 
+    /**
+     * Repeat clear and draw all elements
+     */
     draw() {
         this.clearCanvas();
         this.ctx.translate(this.camera_x, 0);
@@ -66,6 +72,7 @@ class World {
         this.drawStaticObjects();
         this.ctx.translate(-this.camera_x, 0);
 
+        //Draw() wird immer wieder aufgerufen
         let self = this;
         this.drawTheGame = requestAnimationFrame(function () {
             self.draw();
@@ -73,11 +80,17 @@ class World {
     }
 
 
+    /**
+     * Function deletes everything from canvas
+     */
     clearCanvas() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
 
+    /**
+     * Function draws all movable object onto canvas
+     */
     drawMovableObjects() {
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
@@ -89,6 +102,9 @@ class World {
     }
 
 
+    /**
+     * Function draws all static object onto canvas
+     */
     drawStaticObjects() {
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.healthBar);
@@ -98,6 +114,10 @@ class World {
     }
 
 
+    /**
+     * function draws multiple objects onto canvas
+     * @param {Array} objects 
+     */
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o);
@@ -105,6 +125,10 @@ class World {
     }
 
 
+    /**
+     * function draws object onto canvas
+     * @param {Object} mo 
+     */
     addToMap(mo) {
         if (mo.otherDirection) {
             this.flipImage(mo);
@@ -117,6 +141,10 @@ class World {
     }
 
 
+    /**
+     * function mirrors the context on canvas
+     * @param {Object} mo 
+     */
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -125,23 +153,36 @@ class World {
     }
 
 
+    /**
+     * function mirrors the context back to normal on canvas
+     * @param {Object} mo 
+     */
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
 
 
+    /**
+     * Function defines world to the variable "world" in different objects
+     */
     setWorld() {
         this.character.world = this;
         this.level.enemies[0].world = this;
     }
 
 
+    /**
+     * Function runs the game with 60 refreshes per second
+     */
     runGame() {
         this.gameInterval = setInterval(() => this.updateGame60Times(), 1000 / 60);
     }
 
 
+    /**
+     * function lists all the functions which has to be updated every 60 seconds
+     */
     updateGame60Times() {
         this.checkCollisions();
         this.checkCollections();
@@ -150,6 +191,9 @@ class World {
     }
 
 
+    /**
+     * function checks if anything collides (Pepe, Thrown Bottles, Enemies)
+     */
     checkCollisions() {
         this.checkChickenCollision();
         this.checkBossCollision();
@@ -157,12 +201,18 @@ class World {
     }
 
 
+    /**
+     * function checks if pepe collects anything
+     */
     checkCollections() {
         this.checkBottleCollection();
         this.checkCoinCollection();
     }
 
 
+    /**
+     * function throws a bottle if SPACE is hit
+     */
     throwOnSpace() {
         if (this.keyboard.SPACE && this.bottleAmmo > 0) {
             keyboard.SPACE = false;
@@ -175,6 +225,9 @@ class World {
     }
 
 
+    /**
+     * function checks if pepe collides with any enemy
+     */
     checkChickenCollision() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.jumpsOn(enemy)) {
@@ -188,6 +241,10 @@ class World {
     }
 
 
+    /**
+     * function kills chicken in parameter
+     * @param {Cicken} enemy 
+     */
     killChicken(enemy) {
         let hitEnemy = this.level.enemies.indexOf(enemy);
         this.level.enemies[hitEnemy].chickenAlive = false;
@@ -195,22 +252,35 @@ class World {
     }
 
 
+    /**
+     * function deletes hit enemy
+     * @param {Object} hitEnemy 
+     */
     deleteEnemy(hitEnemy) {
         this.level.enemies.splice(hitEnemy, 1);
     }
 
 
+    /**
+     * function lets pepe bounce up
+     */
     bounceJumpKill() {
         this.character.speedY = 12;
     }
 
 
+    /**
+     * function hurts pepe
+     */
     pepeGetsHurt() {
         this.character.hit();
         this.healthBar.updateStatusBar(this.healthBar.IMAGES_HEALTH_PEPE, this.character.energy);
     }
 
 
+    /**
+     * function checks if pepe collides with boss
+     */
     checkBossCollision() {
         if (this.pepeHitsBoss() && this.noRecentHit) {
             this.knocksBackPepe();
@@ -219,11 +289,17 @@ class World {
     }
 
 
+    /**
+     * @returns true if pepe hits boss
+     */
     pepeHitsBoss() {
         return this.character.x >= this.level.enemies[0].x - 100;
     }
 
 
+    /**
+     * function animates the knockback of pepe
+     */
     knocksBackPepe() {
         this.character.speedY = 15;
         let i = setInterval(() => this.kockback(), 1000 / 60);
@@ -231,6 +307,9 @@ class World {
     }
 
 
+    /**
+     * function kocks back pepe
+     */
     kockback() {
         this.character.x -= 10;
         this.keyboard.RIGHT = false;
@@ -238,6 +317,9 @@ class World {
     }
 
 
+    /**
+     * function play boss attack animation and prevents pepe from taking multiple hits
+     */
     bossAttackAnimation() {
         this.level.enemies[0].bossAttacks();
         this.noRecentHit = false;
@@ -247,6 +329,9 @@ class World {
     }
 
 
+    /**
+     * function check if any thrown bottle hitted something
+     */
     checkBottleCollision() {
         this.level.enemies.forEach((enemy) => {
             this.allThrownBottles.forEach((bottle) => {
@@ -258,6 +343,11 @@ class World {
     }
 
 
+    /**
+     * function checks if bottle hit normal chicken or boss and lets bottle splash
+     * @param {Object} bottle 
+     * @param {Object} enemy 
+     */
     bottleHit(bottle, enemy) {
         bottle.bottleHitSomething = true;
         this.playGameSound(3);
@@ -270,11 +360,19 @@ class World {
     }
 
 
+    /**
+     * @param {Object} bottle 
+     * @returns true if bottle hitted boss
+     */
     bottleHitBoss(bottle) {
         return bottle.x >= this.level.enemies[0].x - 100;
     }
 
 
+    /**
+     * function deletes bottle after splash animation
+     * @param {Object} bottle 
+     */
     deleteAfterSplash(bottle) {
         setTimeout(() => {
             let positionOfBottle = this.allThrownBottles.indexOf(bottle)
@@ -283,6 +381,9 @@ class World {
     }
 
 
+    /**
+     * function checks if pepe collects a bottle
+     */
     checkBottleCollection() {
         this.level.bottles.forEach((bottle) => {
             if (this.character.isColliding(bottle)) {
@@ -292,6 +393,10 @@ class World {
     }
 
 
+    /**
+     * function lets pepe collect touched bottle
+     * @param {Object} bottle 
+     */
     collectBottle(bottle) {
         let collectedBottle = this.level.bottles.indexOf(bottle);
         this.level.bottles.splice(collectedBottle, 1);
@@ -300,6 +405,9 @@ class World {
     }
 
 
+    /**
+    * function checks if pepe collects a coin
+    */
     checkCoinCollection() {
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
@@ -309,6 +417,10 @@ class World {
     }
 
 
+    /**
+     * function lets pepe collect touched coin
+     * @param {Object} coin
+     */
     collectCoin(coin) {
         let collectedCoin = this.level.coins.indexOf(coin);
         this.level.coins.splice(collectedCoin, 1);
@@ -317,6 +429,9 @@ class World {
     }
 
 
+    /**
+     * function checks if either pepe or boss died
+     */
     checkGameOver() {
         if (this.character.isDead()) {
             setTimeout(() => this.lostTheGame(), 250); //timeout for pepe death animation
@@ -326,6 +441,9 @@ class World {
     }
 
 
+    /**
+     * function renders win screen after victory
+     */
     wonTheGame() {
         this.stopTheGame();
         this.showEndscreen();
@@ -333,6 +451,9 @@ class World {
     }
 
 
+    /**
+     * function renders lost screen after defeat
+     */
     lostTheGame() {
         this.stopTheGame();
         this.showEndscreen();
@@ -340,6 +461,9 @@ class World {
     }
 
 
+    /**
+     * function stops the game
+     */
     stopTheGame() {
         cancelAnimationFrame(this.drawTheGame);
         clearInterval(this.gameInterval);
@@ -347,6 +471,9 @@ class World {
     }
 
 
+    /**
+     * function clears all input from player
+     */
     clearInput() {
         keyboard.RIGHT = false;
         keyboard.LEFT = false;
@@ -355,6 +482,9 @@ class World {
     }
 
 
+    /**
+     * function renders the endscreen
+     */
     showEndscreen() {
         if (this.gameGoesOn) {
             this.gameGoesOn = false;
@@ -369,6 +499,9 @@ class World {
     }
 
 
+    /**
+     * function shows the win for player
+     */
     showWin() {
         this.playGameSound(1);
         setTimeout(() => {
@@ -377,6 +510,9 @@ class World {
     }
 
 
+    /**
+     * function shows the lose for player
+     */
     showLose() {
         this.playGameSound(0);
         setTimeout(() => {
@@ -385,6 +521,10 @@ class World {
     }
 
 
+    /**
+     * function plays sound from sound array
+     * @param {number} number 
+     */
     playGameSound(number) {
         if (this.sound) {
             let gameSound = this.gameSounds[number];
