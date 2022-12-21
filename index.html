@@ -45,21 +45,44 @@
         <!--I think fullscreen is not a good idea, i tried it and the textures are not made for fullscreen and so the doesent look good-->
 
         <div id="startScreen" class="start-screen">
-
             <img id="playBtn" class="play-btn" onclick="startGame()" src="img/own_graphics/play_btn.png">
-
         </div>
+
+
+
+
+
+
 
         <canvas id="canvas" width="720px" height="480px"></canvas>
 
+        <div id="controllBtns" class="controll-btns d-none">
+
+            <img id="throw" src="img/own_graphics/throw_btn.png">
+            <div>
+                <img id="left" src="img/own_graphics/left_btn.png">
+                <img id="up" src="img/own_graphics/up_btn.png">
+                <img id="right" src="img/own_graphics/right_btn.png">
+            </div>
+
+        </div>
+
+
+
+
+
+
+
         <div>
-            <img class="setting-btn" onclick="showSettings()" src="img/own_graphics/settings.png">
+            <img id="settingsBtn" class="setting-btn d-none" onclick="showSettings()" src="img/own_graphics/settings.png">
+            <img id="settingsBtnIngame" style="filter:invert(1)" class="setting-btn d-none" onclick="showSettings()" src="img/own_graphics/settings.png">
 
             <div id="settings" class="settings">
 
                 <h2>Settings</h2>
 
-                <img id="soundBtn" class="sound-btn" onclick="turnVolume()" src="img/own_graphics/unmute.png">
+                <img id="soundBtn" class="sound-btn d-none" onclick="turnVolume()" src="img/own_graphics/unmute.png">
+                <img id="soundBtnIngame" class="sound-btn d-none" onclick="turnVolume()" src="img/own_graphics/unmute.png">
 
                 <div class="controll-settings">
                     <img class="controll-img" src="img/own_graphics/space.svg">
@@ -74,16 +97,19 @@
 
         </div>
 
-        <div id="controllBtns" class="controll-btns d-none">
 
-            <img id="throw" src="img/own_graphics/throw_btn.png">
-            <div>
-                <img id="left" src="img/own_graphics/left_btn.png">
-                <img id="up" src="img/own_graphics/up_btn.png">
-                <img id="right" src="img/own_graphics/right_btn.png">
-            </div>
 
-        </div>
+
+
+
+
+
+
+
+
+
+
+
 
         <div id="grayscreen" class="grayscreen d-none">
             <img id="gameOverImg" class="game-over-img" src="img/9_intro_outro_screens/game_over/game_over2.png">

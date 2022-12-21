@@ -8,12 +8,14 @@ let playBtnBig = true;
 let sound = true;
 let settingsClosed = true;
 
+let gameDidntStart = true;
 
 
 function initStartscreen() {
     animatePlayBtn();
     bindTouchEvents();
     showVolume();
+    displayCorrectSettings();
 }
 
 
@@ -22,13 +24,16 @@ function initStartscreen() {
  */
 function startGame() {
     clearInterval(playBtnI);
+
     document.getElementById('startScreen').classList.add("d-none");
     document.getElementById('canvas').style = 'display: block';
+   
     document.getElementById('controllBtns').classList.remove("d-none");
+
     document.getElementById('settings').style="display: none";
     settingsClosed = true;
+
     initGame();
-    document.getElementById('settings').style="left: 730px";
 }
 
 
@@ -40,6 +45,8 @@ function initGame() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     world.sound = sound;
+    gameDidntStart = false;
+    displayCorrectSettings();
 }
 
 
@@ -239,7 +246,66 @@ function resetEndscreen() {
     document.getElementById('grayscreen').classList.add("d-none");
     document.getElementById('gameOverImg').classList.remove("d-none");
     document.getElementById('endscreenBtn').style = "opacity: 0";
+    settingsClosed = true;
+    
+    gameDidntStart = true;
+    displayCorrectSettings();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function displayCorrectSettings() {
+    if (gameDidntStart) {
+        displayStartSettings();
+    } else {
+        displayImgameSettings();
+    }
+}
+
+function displayStartSettings() {
+    document.getElementById('settingsBtn').classList.remove('d-none');
+    document.getElementById('soundBtn').classList.remove('d-none');
+    document.getElementById('settingsBtnIngame').classList.add('d-none');
+    document.getElementById('soundBtnIngame').classList.add('d-none');
+}
+
+function displayImgameSettings() {
+    document.getElementById('settingsBtnIngame').classList.remove('d-none');
+    document.getElementById('soundBtnIngame').classList.remove('d-none');
+    document.getElementById('settingsBtn').classList.add('d-none');
+    document.getElementById('soundBtn').classList.add('d-none');
+}
+
+
+
+
+
+
+
 
 
 
@@ -247,10 +313,10 @@ function resetEndscreen() {
 
 function showSettings() {
     if (settingsClosed) {
-        document.getElementById('settings').style="left: 210px";
+        document.getElementById('settings').style="display: flex";
         settingsClosed = false;
     } else {
-        document.getElementById('settings').style="left: 730px";
+        document.getElementById('settings').style="display: none";
         settingsClosed = true;
     }
 
