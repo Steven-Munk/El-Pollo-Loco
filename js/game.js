@@ -11,6 +11,27 @@ let settingsClosed = true;
 let gameDidntStart = true;
 
 
+/**
+ * !FIRST FUNCTION!
+ * function makes sure the user is in landscape mode
+ */
+function turnMobileCheck() {
+    let e = setInterval(() => {
+        if (screen.width < screen.height) {
+            document.getElementById('turnDevice').classList.remove('d-none');
+        }
+        else {
+            clearInterval(e);
+            document.getElementById('turnDevice').classList.add('d-none');
+            initStartscreen();
+        }
+    }, 10);
+}
+
+
+/**
+ * function renders the start screen
+ */
 function initStartscreen() {
     animatePlayBtn();
     bindTouchEvents();
@@ -27,10 +48,10 @@ function startGame() {
 
     document.getElementById('startScreen').classList.add("d-none");
     document.getElementById('canvas').style = 'display: block';
-   
+
     document.getElementById('controllBtns').classList.remove("d-none");
 
-    document.getElementById('settings').style="display: none";
+    document.getElementById('settings').style = "display: none";
     settingsClosed = true;
 
     initGame();
@@ -55,9 +76,9 @@ function initGame() {
  */
 function showVolume() {
     if (sound) {
-        document.getElementById('soundBtn').src='img/own_graphics/unmute.png';
+        document.getElementById('soundBtn').src = 'img/own_graphics/unmute.png';
     } else {
-        document.getElementById('soundBtn').src='img/own_graphics/mute.png';
+        document.getElementById('soundBtn').src = 'img/own_graphics/mute.png';
     }
 }
 
@@ -67,10 +88,10 @@ function showVolume() {
  */
 function turnVolume() {
     if (sound) {
-        document.getElementById('soundBtn').src='img/own_graphics/mute.png';
+        document.getElementById('soundBtn').src = 'img/own_graphics/mute.png';
         sound = false;
     } else {
-        document.getElementById('soundBtn').src='img/own_graphics/unmute.png';
+        document.getElementById('soundBtn').src = 'img/own_graphics/unmute.png';
         sound = true;
     }
 }
@@ -247,7 +268,7 @@ function resetEndscreen() {
     document.getElementById('gameOverImg').classList.remove("d-none");
     document.getElementById('endscreenBtn').style = "opacity: 0";
     settingsClosed = true;
-    
+
     gameDidntStart = true;
     displayCorrectSettings();
 }
@@ -306,17 +327,19 @@ function displayImgameSettings() {
 
 
 
-
-
+function showSettingsIngame() {
+    pauseGame();
+    showSettings();
+}
 
 
 
 function showSettings() {
     if (settingsClosed) {
-        document.getElementById('settings').style="display: flex";
+        document.getElementById('settings').style = "display: flex";
         settingsClosed = false;
     } else {
-        document.getElementById('settings').style="display: none";
+        document.getElementById('settings').style = "display: none";
         settingsClosed = true;
     }
 

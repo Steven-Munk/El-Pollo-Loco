@@ -37,7 +37,13 @@
 
 </head>
 
-<body onload="initStartscreen()">
+<body onload="turnMobileCheck()">
+
+    <div id="turnDevice" class="turn-device d-none">
+        <h3>Please turn your device</h3>
+        <img style="transform: scaleX(-1);" src="img/own_graphics/turn-phone.png"> 
+    </div>
+
 
     <h1>El Pollo Loco</h1>
 
@@ -75,7 +81,7 @@
 
         <div>
             <img id="settingsBtn" class="setting-btn d-none" onclick="showSettings()" src="img/own_graphics/settings.png">
-            <img id="settingsBtnIngame" style="filter:invert(1)" class="setting-btn d-none" onclick="showSettings()" src="img/own_graphics/settings.png">
+            <img id="settingsBtnIngame" style="filter:invert(1)" class="setting-btn d-none" onclick="showSettingsIngame()" src="img/own_graphics/settings.png">
 
             <div id="settings" class="settings">
 
@@ -127,6 +133,18 @@
         </div>
 
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 
