@@ -324,6 +324,44 @@ function displayImgameSettings() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+function w() {
+    for (let i = 0; i < 70; i++) {
+        clearInterval(i);
+    }
+}
+
+function d() {
+    world.draw();
+    world.runGame();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 let gameRuns = true;
 
 

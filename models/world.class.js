@@ -488,7 +488,7 @@ class World {
     showEndscreen() {
         if (this.gameGoesOn) {
             this.gameGoesOn = false;
-            document.getElementById('settings').style="display: none";
+            document.getElementById('settings').style = "display: none";
             document.getElementById('controllBtns').classList.add("d-none");
             document.getElementById('endscreenBtn').classList.remove("d-none");
             document.getElementById('grayscreen').classList.remove("d-none");

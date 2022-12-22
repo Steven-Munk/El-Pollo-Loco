@@ -73,7 +73,7 @@ class MoveableObject extends AllObjects {
      */
     hit() {
         if (this.noRecentHit) {
-            this.energy -= 1;
+            this.energy -= 0;
             this.noRecentHit = false;
             setTimeout(() => {
                 this.noRecentHit = true;
