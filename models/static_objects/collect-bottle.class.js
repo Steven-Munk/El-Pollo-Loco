@@ -1,4 +1,12 @@
 class CollectBottle extends AllObjects {
+
+    offset = {
+        top: 10,
+        bottom: 10,
+        left: 30,
+        right: 30
+    };
+
     constructor() {
         super().loadImage('img/6_salsa_bottle/salsa_bottle.png');
 

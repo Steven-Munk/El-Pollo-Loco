@@ -11,6 +11,13 @@ class LilChicken extends MoveableObject {
 
     IMAGE_DEAD = ['img/3_enemies_chicken/chicken_small/2_dead/dead.png'];
 
+    offset = {
+        top: 5,
+        bottom: 5,
+        left: 5,
+        right: 5
+    };
+
 
     constructor() {
         super().loadImage(this.IMAGES_WALKING[0]);

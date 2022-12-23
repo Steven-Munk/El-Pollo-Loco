@@ -17,6 +17,13 @@ class ThrownBottle extends MoveableObject {
 
     bottleHitSomething = false;
 
+    offset = {
+        top: 10,
+        bottom: 10,
+        left: 10,
+        right: 10
+    };
+
 
     constructor(x, y) {
         super().loadImage(this.IMAGES_BOTTLE_ROTATION[0]);

@@ -46,18 +46,31 @@ class AllObjects {
      * @param {Object} ctx 
      */
     drawHitbox(ctx) {
-        if (this instanceof Chicken || this instanceof LilChicken || this instanceof Endboss || this instanceof Coin || this instanceof CollectBottle) {
-            this.drawNormalHitbox();
-        } else if (this instanceof Character) {
-            this.drawPepeHitbox();
+        if (this.isInteractiveObject()) {
+            this.drawNormalHitbox(ctx);
+            this.drawCorrectHitbox(ctx);
         }
+    }
+
+
+    /**
+     * @returns all objects, that can be interacted with
+     */
+    isInteractiveObject() {
+        return this instanceof Chicken ||
+            this instanceof LilChicken ||
+            this instanceof Endboss ||
+            this instanceof Coin ||
+            this instanceof CollectBottle ||
+            this instanceof ThrownBottle ||
+            this instanceof Character
     }
 
 
     /**
      * function draws hitbox for all moveable objects but pepe
      */
-    drawNormalHitbox() {
+    drawNormalHitbox(ctx) {
         ctx.beginPath();
         ctx.lineWidth = '2';
         ctx.strokeStyle = 'blue';
@@ -69,11 +82,14 @@ class AllObjects {
     /**
      * function draws hitbox for pepe
      */
-    drawPepeHitbox() {
+    drawCorrectHitbox(ctx) {
         ctx.beginPath();
         ctx.lineWidth = '2';
-        ctx.strokeStyle = 'blue';
-        ctx.rect(this.x + 25, this.y + 115, this.width - 45, this.height - 125);
+        ctx.strokeStyle = 'red';
+        ctx.rect(this.x + this.offset.left,
+            this.y + this.offset.top,
+            this.width - this.offset.right - this.offset.left,
+            this.height - this.offset.bottom - this.offset.top);
         ctx.stroke();
     }
 }

@@ -1,4 +1,12 @@
 class Coin extends AllObjects {
+
+    offset = {
+        top: 25,
+        bottom: 25,
+        left: 25,
+        right: 25
+    };
+
     constructor() {
         super().loadImage('img/8_coin/coin_2.png');
 

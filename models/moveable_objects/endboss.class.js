@@ -16,7 +16,6 @@ class Endboss extends MoveableObject {
     bossIsWalking = false;
     world;
 
-
     IMAGES_ALERT = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
         'img/4_enemie_boss_chicken/2_alert/G6.png',
@@ -58,8 +57,14 @@ class Endboss extends MoveableObject {
         'img/4_enemie_boss_chicken/5_dead/G26.png'
     ];
 
-
     bossScream = new Audio('audio/Boss_hurt.mp3');
+
+    offset = {
+        top: 130,
+        bottom: 10,
+        left: 30,
+        right: 30
+    };
 
 
     constructor() {
