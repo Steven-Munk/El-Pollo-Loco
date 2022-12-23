@@ -17,6 +17,7 @@ class ThrownBottle extends MoveableObject {
 
     world;
     bottleHitSomething = false;
+    bottleDirection = [];
 
 
     offset = {
@@ -53,7 +54,6 @@ class ThrownBottle extends MoveableObject {
 
 
 
-
     /**
      * function disables movement, if bottle hit something
      */
@@ -61,7 +61,14 @@ class ThrownBottle extends MoveableObject {
         this.speedY = 25;
         setInterval(() => {
             if (!this.bottleHitSomething) {
-                this.bottleInAir();
+
+                this.bottleDirection.push(this.world.pepeLooksRight);
+                if (this.bottleDirection[0]) {
+                    this.x += 10;
+                } else {
+                    this.x -= 10;
+                }
+
             } else {
                 this.speedY = 0;
             }

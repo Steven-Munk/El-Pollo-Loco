@@ -181,7 +181,7 @@ class World {
      */
     runGame() {
         this.gameInterval = setInterval(() => this.updateGame60Times(), 1000 / 60);
-    }
+     }
 
 
     /**
@@ -192,7 +192,8 @@ class World {
         this.checkCollections();
         this.throwOnSpace();
         this.checkGameOver();
-        this.setSound();        
+        this.setSound();
+        console.log(this.allThrownBottles);
     }
 
 
@@ -226,6 +227,11 @@ class World {
             this.allThrownBottles.push(newBottle);
             this.bottleAmmo--;
             this.bottleBar.updateStatusBar(this.bottleBar.IMAGES_BOTTLE_BAR, this.bottleAmmo);
+            
+            setTimeout(() => {
+                let bottleIndex = this.allThrownBottles.indexOf(newBottle);
+                this.allThrownBottles.splice(bottleIndex, 1);
+            }, 2000);
         }
     }
 
@@ -355,6 +361,12 @@ class World {
      */
     bottleHit(bottle, enemy) {
         bottle.bottleHitSomething = true;
+        let bottleIndex = this.allThrownBottles.indexOf(bottle);
+        setTimeout(() => {
+            this.allThrownBottles.splice(bottleIndex, 1);
+        }, 1000);
+
+
         this.playGameSound(3);
         if (this.bottleHitBoss(bottle)) {
             this.level.enemies[0].bossGetsHit();
@@ -551,7 +563,7 @@ class World {
 
 
 
-    
+
 
 
     setSound() {
