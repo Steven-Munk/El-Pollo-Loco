@@ -23,7 +23,7 @@ class World {
     gameInterval;
     gameGoesOn = true;
 
-    sound = true
+    sound;
     gameMusic = new Audio('audio/Game_music.mp3');
     gameSounds = [
         new Audio('audio/lose.mp3'),
@@ -49,15 +49,12 @@ class World {
      */
     playGameMusic() {
         setTimeout(() => {
-            if (this.sound) {
-                this.gameMusic.volume = 0.05;
-                this.gameMusic.play();
-                setInterval(() => {
-                    if (!this.gameGoesOn) {
-                        this.gameMusic.pause();
-                    }
-                }, 1000 / 60);
-            }
+            this.gameMusic.play();
+            setInterval(() => {
+                if (!this.gameGoesOn) {
+                    this.gameMusic.pause();
+                }
+            }, 1000 / 60);
         }, 100);
     }
 
@@ -188,6 +185,7 @@ class World {
         this.checkCollections();
         this.throwOnSpace();
         this.checkGameOver();
+        this.setSound();
     }
 
 
@@ -522,6 +520,56 @@ class World {
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+    setSound() {
+        if (this.sound) {
+            this.gameSounds.forEach(sound => {
+                sound.volume = 0.2;
+            });
+            this.gameMusic.volume = 0.05;
+        } else {
+            this.gameSounds.forEach(sound => {
+                sound.volume = 0;
+            });
+            this.gameMusic.volume = 0;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
     /**
      * function plays sound from sound array
      * @param {number} number 
@@ -529,7 +577,6 @@ class World {
     playGameSound(number) {
         if (this.sound) {
             let gameSound = this.gameSounds[number];
-            gameSound.volume = 0.2;
             gameSound.play();
         }
     }

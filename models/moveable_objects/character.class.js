@@ -75,6 +75,7 @@ class Character extends MoveableObject {
     walking_sound = new Audio('audio/Pepe_Walking.mp3');
     pepeGrunt = new Audio('audio/Pepe_dmg_2.mp3');
     pepeJumpSound = new Audio('audio/Pepe_jump.mp3');
+    allSoundsPepe = [this.walking_sound, this.pepeGrunt, this.pepeJumpSound];
 
 
     constructor() {
@@ -110,7 +111,13 @@ class Character extends MoveableObject {
      * function sets the sound and camera for pepe
      */
     setSoundAndCamera() {
-        this.walking_sound.volume = 0.2;
+        this.allSoundsPepe.forEach(sound => {
+            if (this.world.sound) {
+                sound.volume = 0.2;
+            } else {
+                sound.volume = 0;
+            }
+        })
         this.walking_sound.pause();
         this.world.camera_x = -this.x + 100;
     }
@@ -249,7 +256,6 @@ class Character extends MoveableObject {
      * function plays pepes hit sound, if sound is on
      */
     playPepeGrunt() {
-        this.pepeGrunt.volume = 0.2;
         if (this.world.sound && this.noRecentHit === false) {
             this.pepeGrunt.play();
         }
@@ -270,7 +276,6 @@ class Character extends MoveableObject {
      * function plays pepes jump sound, if sound is on and pepe is just jumping
      */
     playJumpSound() {
-        this.pepeJumpSound.volume = 0.2;
         if (this.world.sound && this.speedY > 0) {
             this.pepeJumpSound.play();
         }

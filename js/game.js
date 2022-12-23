@@ -36,7 +36,6 @@ function initStartscreen() {
     animatePlayBtn();
     bindTouchEvents();
     showVolume();
-    displayCorrectSettings();
 }
 
 
@@ -67,34 +66,10 @@ function initGame() {
     world = new World(canvas, keyboard);
     world.sound = sound;
     gameDidntStart = false;
-    displayCorrectSettings();
 }
 
 
-/**
- * function displays correct volume setting
- */
-function showVolume() {
-    if (sound) {
-        document.getElementById('soundBtn').src = 'img/own_graphics/unmute.png';
-    } else {
-        document.getElementById('soundBtn').src = 'img/own_graphics/mute.png';
-    }
-}
 
-
-/**
- * function sets the volume and changes volume icon
- */
-function turnVolume() {
-    if (sound) {
-        document.getElementById('soundBtn').src = 'img/own_graphics/mute.png';
-        sound = false;
-    } else {
-        document.getElementById('soundBtn').src = 'img/own_graphics/unmute.png';
-        sound = true;
-    }
-}
 
 
 /**
@@ -267,10 +242,9 @@ function resetEndscreen() {
     document.getElementById('grayscreen').classList.add("d-none");
     document.getElementById('gameOverImg').classList.remove("d-none");
     document.getElementById('endscreenBtn').style = "opacity: 0";
+
     settingsClosed = true;
-
     gameDidntStart = true;
-    displayCorrectSettings();
 }
 
 
@@ -299,27 +273,6 @@ function resetEndscreen() {
 
 
 
-function displayCorrectSettings() {
-    if (gameDidntStart) {
-        displayStartSettings();
-    } else {
-        displayImgameSettings();
-    }
-}
-
-function displayStartSettings() {
-    document.getElementById('settingsBtn').classList.remove('d-none');
-    document.getElementById('soundBtn').classList.remove('d-none');
-    document.getElementById('settingsBtnIngame').classList.add('d-none');
-    document.getElementById('soundBtnIngame').classList.add('d-none');
-}
-
-function displayImgameSettings() {
-    document.getElementById('settingsBtnIngame').classList.remove('d-none');
-    document.getElementById('soundBtnIngame').classList.remove('d-none');
-    document.getElementById('settingsBtn').classList.add('d-none');
-    document.getElementById('soundBtn').classList.add('d-none');
-}
 
 
 
@@ -334,17 +287,16 @@ function displayImgameSettings() {
 
 
 
+// function w() {
+//     for (let i = 0; i < 70; i++) {
+//         clearInterval(i);
+//     }
+// }
 
-function w() {
-    for (let i = 0; i < 70; i++) {
-        clearInterval(i);
-    }
-}
-
-function d() {
-    world.draw();
-    world.runGame();
-}
+// function d() {
+//     world.draw();
+//     world.runGame();
+// }
 
 
 
@@ -362,24 +314,30 @@ function d() {
 
 
 
-let gameRuns = true;
 
 
 
-function showSettingsIngame() {
-    if (gameRuns) {
-        world.stopTheGame();
-        gameRuns = false;
-    } else {
-        world.draw();
-        world.runGame();
-        gameRuns = true;
-    }
-
-    showSettings();
-}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//sieht soweit gut aus
 
 function showSettings() {
     if (settingsClosed) {
@@ -390,4 +348,52 @@ function showSettings() {
         settingsClosed = true;
     }
 
+}
+
+
+/**
+ * function displays correct volume setting
+ */
+function showVolume() {
+    if (sound) {
+        document.getElementById('soundBtn').src = 'img/own_graphics/unmute.png';
+    } else {
+        document.getElementById('soundBtn').src = 'img/own_graphics/mute.png';
+    }
+}
+
+
+
+
+
+
+/**
+ * function sets the volume and changes volume icon
+ */
+function turnVolume() {
+    if (sound) {
+        document.getElementById('soundBtn').src = 'img/own_graphics/mute.png';
+        muteVolume();
+    } else {
+        document.getElementById('soundBtn').src = 'img/own_graphics/unmute.png';
+        addVolume();
+    }
+}
+
+
+
+
+function muteVolume() {
+    if (!gameDidntStart) {
+        world.sound = false;
+    }
+    sound = false;
+}
+
+
+function addVolume() {
+    if (!gameDidntStart) {
+        world.sound = true;
+    }
+    sound = true;
 }

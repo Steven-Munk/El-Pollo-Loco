@@ -84,6 +84,7 @@ class Endboss extends MoveableObject {
             this.playStartAnimation();
             this.checkFirstEncounter();
         }, 1000 / 6);
+        this.setSound();
         this.moveBoss();
     }
 
@@ -114,6 +115,18 @@ class Endboss extends MoveableObject {
             }, 500);
             this.firstEncounter = false;
         }
+    }
+
+
+    /**function sets the sound for Endboss */
+    setSound() {
+        setInterval(() => {
+            if (this.world.sound) {
+                this.bossScream.volume = 0.2;
+            } else {
+                this.bossScream.volume = 0;
+            }
+        }, 1000 / 60);
     }
 
 
@@ -213,9 +226,3 @@ class Endboss extends MoveableObject {
         }, 1000);
     }
 }
-
-
-
-
-
-
