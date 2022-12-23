@@ -3,11 +3,12 @@ class MoveableObject extends AllObjects {
     speedY = 0;
     acceleration = 1.3;
 
-    otherDirection = 0;
+    otherDirection;
 
     energy = 5;
     noRecentHit = true;
 
+    
 
     /**
      * function repeatly goes through array (images of array)

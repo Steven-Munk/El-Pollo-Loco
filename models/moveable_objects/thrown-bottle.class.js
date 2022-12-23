@@ -15,7 +15,9 @@ class ThrownBottle extends MoveableObject {
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
     ];
 
+    world;
     bottleHitSomething = false;
+
 
     offset = {
         top: 10,
@@ -41,6 +43,17 @@ class ThrownBottle extends MoveableObject {
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
     /**
      * function disables movement, if bottle hit something
      */
@@ -48,11 +61,20 @@ class ThrownBottle extends MoveableObject {
         this.speedY = 25;
         setInterval(() => {
             if (!this.bottleHitSomething) {
-                this.x += 10;
+                this.bottleInAir();
             } else {
                 this.speedY = 0;
             }
         }, 1000 / 60);
+    }
+
+
+    bottleInAir() {
+        if (this.world.pepeLooksRight) {
+            this.x += 10;
+        } else {
+            this.x -= 10;
+        }
     }
 
 

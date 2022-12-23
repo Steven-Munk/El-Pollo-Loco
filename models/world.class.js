@@ -7,6 +7,7 @@ class World {
     character = new Character();
     noRecentHit = true
     camera_x = 0;
+    pepeLooksRight = true;
 
     healthBar = new HealthBar();
     bottleBar = new BottleBar();
@@ -166,6 +167,12 @@ class World {
     setWorld() {
         this.character.world = this;
         this.level.enemies[0].world = this;
+        setInterval(() => {
+            this.thrownBottle.world = this;
+            this.allThrownBottles.forEach((bottle) => {
+                bottle.world = this;
+            })
+        }, 100 / 60);
     }
 
 
@@ -185,7 +192,7 @@ class World {
         this.checkCollections();
         this.throwOnSpace();
         this.checkGameOver();
-        this.setSound();
+        this.setSound();        
     }
 
 
