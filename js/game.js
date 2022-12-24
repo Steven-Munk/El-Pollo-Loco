@@ -5,7 +5,7 @@ let keyboard = new Keyboard();
 let playBtnI;
 let playBtnBig = true;
 
-let sound = false;
+let sound = true;
 let settingsClosed = true;
 
 let gameDidntStart = true;

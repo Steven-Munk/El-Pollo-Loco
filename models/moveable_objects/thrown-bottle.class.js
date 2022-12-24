@@ -44,16 +44,6 @@ class ThrownBottle extends MoveableObject {
     }
 
 
-
-
-
-
-
-
-
-
-
-
     /**
      * function disables movement, if bottle hit something
      */

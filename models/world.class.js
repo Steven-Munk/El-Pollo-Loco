@@ -216,12 +216,21 @@ class World {
     }
 
 
+
+
+    newThrow = true;
+
+
     /**
      * function throws a bottle if SPACE is hit
      */
     throwOnSpace() {
-        if (this.keyboard.SPACE && this.bottleAmmo > 0) {
-            keyboard.SPACE = false;
+        if (this.keyboard.SPACE && this.bottleAmmo > 0 && this.newThrow) {
+
+
+
+            this.newThrow = false;
+
             this.playGameSound(2);
             let newBottle = new ThrownBottle(this.character.x + 60, this.character.y + 100)
             this.allThrownBottles.push(newBottle);
@@ -232,7 +241,14 @@ class World {
                 let bottleIndex = this.allThrownBottles.indexOf(newBottle);
                 this.allThrownBottles.splice(bottleIndex, 1);
             }, 2000);
+
+
         }
+
+        if (!this.keyboard.SPACE) {
+            this.newThrow = true;
+        }
+
     }
 
 
