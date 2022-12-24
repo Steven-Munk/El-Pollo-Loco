@@ -37,11 +37,11 @@
 
 </head>
 
-<body onload="turnMobileCheck()">
+<body onload="startGame()">
 
     <div id="turnDevice" class="turn-device d-none">
         <h3>Please turn your device</h3>
-        <img style="transform: scaleX(-1);" src="img/own_graphics/turn-phone.png"> 
+        <img style="transform: scaleX(-1);" src="img/own_graphics/turn-phone.png">
     </div>
 
 
@@ -60,7 +60,27 @@
 
 
 
+
+
         <canvas id="canvas" width="720px" height="480px"></canvas>
+
+
+
+
+        <div class="missionHelp">
+            <h3>MISSION</h3>
+            <p class="missionText">Collect Bottles and throw them at the crazy chicken 'Fred' to defeat him!</p>
+            <div class="missionImages">
+
+                <img class="missionImg" src="img/6_salsa_bottle/salsa_bottle.png">
+                <img class="missionImg" style="transform: rotate(25deg);" src="img/own_graphics/mission-arrow.png">
+                <img class="missionImg" src="img/4_enemie_boss_chicken/3_attack/G18.png">
+
+            </div>
+        </div>
+
+
+
 
         <div id="controllBtns" class="controll-btns d-none">
 
@@ -89,7 +109,7 @@
                 <div class="settings-position">
 
                     <img id="soundBtn" class="sound-btn" onclick="turnVolume()" src="img/own_graphics/unmute.png">
-    
+
                     <div class="controll-settings">
                         <img class="controll-img" src="img/own_graphics/space.svg">
                         <p>THROW<br>BOTTLE</p>
