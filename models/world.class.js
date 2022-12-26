@@ -200,7 +200,7 @@ class World {
      * function checks if anything collides (Pepe, Thrown Bottles, Enemies)
      */
     checkCollisions() {
-        this.checkChickenCollision();
+        this.checkEnemyCollision();
         this.checkBossCollision();
         this.checkBottleCollision();
     }
@@ -254,7 +254,7 @@ class World {
     /**
      * function checks if pepe collides with any enemy
      */
-    checkChickenCollision() {
+    checkEnemyCollision() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.jumpsOn(enemy)) {
                 this.killChicken(enemy);

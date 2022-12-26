@@ -1,4 +1,5 @@
 class BackgroundObject extends MoveableObject{
+
     width = 720;
     height = 480;
 
@@ -7,4 +8,5 @@ class BackgroundObject extends MoveableObject{
         this.x = x;
         this.y = 480 - this.height;
     }
+    
 }

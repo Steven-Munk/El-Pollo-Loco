@@ -21,18 +21,18 @@ function initLevel() {
 function addEnemies() {
     return [
         new Endboss(),
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new LilChicken(),
-        new LilChicken(),
-        new LilChicken(),
-        new LilChicken(),
-        new LilChicken(),
-        new LilChicken()
+        new Enemy(),
+        new Enemy(),
+        new Enemy(),
+        new Enemy(),
+        new Enemy(),
+        new Enemy(),
+        new Enemy(),
+        new Enemy(),
+        new Enemy(),
+        new Enemy(),
+        new Enemy(),
+        new Enemy()
     ]
 }
 
@@ -118,6 +118,7 @@ function addCollectableBottles() {
         new CollectBottle()
     ]
 }
+
 
 /**
  * function adds all collectable coins to world
