@@ -193,7 +193,6 @@ class World {
         this.throwOnSpace();
         this.checkGameOver();
         this.setSound();
-        console.log(this.allThrownBottles);
     }
 
 

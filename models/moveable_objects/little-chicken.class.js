@@ -1,4 +1,5 @@
 class LilChicken extends MoveableObject {
+    
     width = 65;
     height = 70;
     chickenAlive = true;
@@ -25,7 +26,7 @@ class LilChicken extends MoveableObject {
         this.loadImages(this.IMAGE_DEAD);
 
         this.y = 355 + Math.random() * 10;
-        this.x = 500 + Math.random() * 3000;
+        this.x = 700 + Math.random() * 3000;
         this.speed = 0.2 + Math.random() * 0.6;
 
         this.animate();

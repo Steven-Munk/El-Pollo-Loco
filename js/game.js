@@ -64,6 +64,12 @@ function initGame() {
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+
+    document.getElementById('missionBoard').classList.remove('d-none');
+    setTimeout(() => {
+        document.getElementById('missionBoard').classList.add('d-none');
+    }, 4000);
+
     world.sound = sound;
     gameDidntStart = false;
 }
@@ -327,24 +333,16 @@ function resetEndscreen() {
 
 
 
-
-
-
-
-
-
-
-
-
-
 //sieht soweit gut aus
 
 function showSettings() {
     if (settingsClosed) {
         document.getElementById('settings').style = "display: flex";
+        document.getElementById('missionBoard').classList.remove('d-none');
         settingsClosed = false;
     } else {
         document.getElementById('settings').style = "display: none";
+        document.getElementById('missionBoard').classList.add('d-none');
         settingsClosed = true;
     }
 
