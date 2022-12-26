@@ -1,4 +1,5 @@
 class BottleBar extends StatusBars {
+
     IMAGES_BOTTLE_BAR = [
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png',
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/20.png',
@@ -19,4 +20,5 @@ class BottleBar extends StatusBars {
 
         this.updateStatusBar(this.IMAGES_BOTTLE_BAR, 0);
     }
+    
 }

@@ -2,14 +2,12 @@ class MoveableObject extends AllObjects {
 
     speedY = 0;
     acceleration = 1.3;
-
     otherDirection;
 
     energy = 5;
     noRecentHit = true;
 
     
-
     /**
      * function repeatly goes through array (images of array)
      * @param {Array} images 
@@ -21,6 +19,7 @@ class MoveableObject extends AllObjects {
         this.currentImage++;
     }
 
+
     /**
      * function increases x of calling object
      */
@@ -28,6 +27,7 @@ class MoveableObject extends AllObjects {
         this.x += this.speed;
     }
 
+    
     /**
      * function decreases x of calling object
      */

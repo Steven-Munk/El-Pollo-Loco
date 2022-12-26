@@ -15,4 +15,5 @@ class CollectBottle extends AllObjects {
         this.width = 80;
         this.height = 80;
     }
+    
 }

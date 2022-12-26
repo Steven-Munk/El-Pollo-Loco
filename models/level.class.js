@@ -1,4 +1,5 @@
 class Level {
+
     enemies;
     clouds;
     backgroundObjects;
@@ -13,4 +14,5 @@ class Level {
         this.bottles = bottles;
         this.coins = coins;
     }
+    
 }

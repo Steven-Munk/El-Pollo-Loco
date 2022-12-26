@@ -1,4 +1,5 @@
 class HealthBar extends StatusBars {
+    
     IMAGES_HEALTH_PEPE = [
         'img/7_statusbars/1_statusbar/2_statusbar_health/green/0.png' , 
         'img/7_statusbars/1_statusbar/2_statusbar_health/green/20.png', 
@@ -9,8 +10,7 @@ class HealthBar extends StatusBars {
     ];
 
     constructor() {
-        super();
-        this.loadImages(this.IMAGES_HEALTH_PEPE);
+        super().loadImages(this.IMAGES_HEALTH_PEPE);
 
         this.x = 20;
         this.y = 0;
@@ -18,6 +18,5 @@ class HealthBar extends StatusBars {
         this.width = 200;
 
         this.updateStatusBar(this.IMAGES_HEALTH_PEPE, 5);
-
     } 
 }
