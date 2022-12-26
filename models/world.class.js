@@ -461,6 +461,32 @@ class World {
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * function checks if either pepe or boss died
      */
@@ -478,7 +504,7 @@ class World {
      */
     wonTheGame() {
         this.stopTheGame();
-        this.showEndscreen();
+        this.displayEndscreen();
         this.showWin();
     }
 
@@ -488,7 +514,7 @@ class World {
      */
     lostTheGame() {
         this.stopTheGame();
-        this.showEndscreen();
+        this.displayEndscreen();
         this.showLose();
     }
 
@@ -515,20 +541,19 @@ class World {
 
 
     /**
-     * function renders the endscreen
+     * function displays the endscreen and changes 'gameGoesOn' to false
      */
-    showEndscreen() {
-        if (this.gameGoesOn) {
-            this.gameGoesOn = false;
-            document.getElementById('settings').style = "display: none";
-            document.getElementById('controllBtns').classList.add("d-none");
-            document.getElementById('endscreenBtn').classList.remove("d-none");
-            document.getElementById('grayscreen').classList.remove("d-none");
-            setTimeout(() => {
-                document.getElementById('gameOverImg').classList.add("d-none");
-                document.getElementById('endscreenBtn').style = "opacity: 1";
-            }, 1500);
-        }
+    displayEndscreen() {
+        this.gameGoesOn = false;
+        document.getElementById('settings').classList.add("d-none");
+        document.getElementById('controllBtns').classList.add("d-none");
+        document.getElementById('grayscreen').classList.remove("d-none");
+        document.getElementById('gameOverImg').classList.remove("d-none");
+        document.getElementById('endscreenBtn').classList.remove("d-none");
+        setTimeout(() => {
+            document.getElementById('gameOverImg').classList.add("d-none");
+            document.getElementById('endscreenBtn').style = "opacity: 1";
+        }, 1500);
     }
 
 
@@ -538,7 +563,7 @@ class World {
     showWin() {
         this.playGameSound(1);
         setTimeout(() => {
-            document.getElementById('win').style = 'display: block';
+            document.getElementById('win').classList.remove("d-none");
         }, 1500);
     }
 
@@ -549,7 +574,7 @@ class World {
     showLose() {
         this.playGameSound(0);
         setTimeout(() => {
-            document.getElementById('lose').style = 'display: block';
+            document.getElementById('lose').classList.remove("d-none");
         }, 1500);
     }
 

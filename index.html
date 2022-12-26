@@ -37,7 +37,7 @@
 
 </head>
 
-<body onload="turnMobileCheck()">
+<body onload="init()">
 
     <mobile_check id="turnDevice" class="turn-device d-none">
         <h3>Please turn your device</h3>
@@ -49,11 +49,11 @@
     <game_screen class="container">
 
         <start_screen id="startScreen" class="start-screen">
-            <img id="playBtn" class="play-btn" onclick="startGame()" src="img/own_graphics/play_btn.png">
+            <img id="playBtn" class="play-btn" onclick="initGameFromStart()" src="img/own_graphics/play_btn.png">
         </start_screen>
 
 
-        <canvas id="canvas" width="720px" height="480px"></canvas>
+        <canvas id="canvas" class="d-none" width="720px" height="480px"></canvas>
 
 
         <mission_board id="missionBoard" class="missionHelp only-desktop d-none">
@@ -90,9 +90,9 @@
 
         <settings>
 
-            <img id="settingsBtn" class="setting-btn" onclick="showSettings()" src="img/own_graphics/settings.png">
+            <img id="settingsBtn" class="setting-btn" onclick="renderSettings()" src="img/own_graphics/settings.png">
 
-            <div id="settings" class="settings">
+            <div id="settings" class="settings d-none">
 
                 <h2>Settings</h2>
 
@@ -136,8 +136,8 @@
         <gray_screen id="grayscreen" class="grayscreen d-none">
 
             <img id="gameOverImg" class="game-over-img" src="img/9_intro_outro_screens/game_over/game_over2.png">
-            <h2 id="win" class="result-msg">YOU WON!</h2>
-            <h2 id="lose" class="result-msg">YOU LOST!</h2>
+            <h2 id="win" class="result-msg d-none">YOU WON!</h2>
+            <h2 id="lose" class="result-msg d-none">YOU LOST!</h2>
 
         </gray_screen>
 

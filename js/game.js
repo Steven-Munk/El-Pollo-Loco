@@ -2,30 +2,45 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
-let playBtnI;
+let playBtnInterval;
 let playBtnBig = true;
 
 let sound = false;
+
 let settingsClosed = true;
 
 let gameDidntStart = true;
 
 
+
 /**
- * !FIRST FUNCTION!
+ * FIRST FUNCTION
+ */
+function init() {
+    checkTurnedMobile();
+    initStartscreen();
+    bindTouchEvents();
+}
+
+
+
+
+
+// STARTSCREEN ///////////////////////////////////////////////////////////
+
+
+/**
  * function makes sure the user is in landscape mode
  */
-function turnMobileCheck() {
-    let e = setInterval(() => {
+function checkTurnedMobile() {
+    setInterval(() => {
         if (screen.width < screen.height) {
             document.getElementById('turnDevice').classList.remove('d-none');
         }
         else {
-            clearInterval(e);
             document.getElementById('turnDevice').classList.add('d-none');
-            initStartscreen();
         }
-    }, 10);
+    }, 30);
 }
 
 
@@ -33,27 +48,143 @@ function turnMobileCheck() {
  * function renders the start screen
  */
 function initStartscreen() {
-    animatePlayBtn();
-    bindTouchEvents();
-    showVolume();
+    playBtnInterval = setInterval(() => animatePlayBtn(), 1000);
 }
 
 
 /**
- * function starts the game from start screen
+ * function describes the two diffrent states of the btn
  */
-function startGame() {
-    clearInterval(playBtnI);
+function animatePlayBtn() {
+    if (playBtnBig) {
+        document.getElementById('playBtn').style = 'transform: scale(0.9)';
+        playBtnBig = false;
+    } else {
+        document.getElementById('playBtn').style = 'transform: scale(1)';
+        playBtnBig = true;
+    }
+}
 
-    document.getElementById('startScreen').classList.add("d-none");
-    document.getElementById('canvas').style = 'display: block';
 
-    document.getElementById('controllBtns').classList.remove("d-none");
+/////////////////////////////////////////////////////////// STARTSCREEN //
 
-    document.getElementById('settings').style = "display: none";
-    settingsClosed = true;
 
+
+
+
+// SETTINGS /////////////////////////////////////////////////////////////
+
+
+/**
+ * function renders settings onclick
+ */
+function renderSettings() {
+    displaySettingCards();
+    displayVolume();
+}
+
+
+/**
+ * function displays Settings and Misson card
+ */
+function displaySettingCards() {
+    if (settingsClosed) {
+        document.getElementById('settings').classList.remove('d-none');
+        document.getElementById('missionBoard').classList.remove('d-none');
+        settingsClosed = false;
+    } else {
+        document.getElementById('settings').classList.add('d-none');
+        document.getElementById('missionBoard').classList.add('d-none');
+        settingsClosed = true;
+    }
+}
+
+
+/**
+ * function displays correct volume setting
+ */
+function displayVolume() {
+    if (sound) {
+        document.getElementById('soundBtn').src = 'img/own_graphics/unmute.png';
+    } else {
+        document.getElementById('soundBtn').src = 'img/own_graphics/mute.png';
+    }
+}
+
+
+/**
+ * function sets the volume and changes volume icon
+ */
+function turnVolume() {
+    if (sound) {
+        document.getElementById('soundBtn').src = 'img/own_graphics/mute.png';
+        muteVolume();
+    } else {
+        document.getElementById('soundBtn').src = 'img/own_graphics/unmute.png';
+        addVolume();
+    }
+}
+
+
+/**
+ * function mutes the sound
+ */
+function muteVolume() {
+    if (!gameDidntStart) {
+        world.sound = false;
+    }
+    sound = false;
+}
+
+
+/**
+ * function unmutes the sound
+ */
+function addVolume() {
+    if (!gameDidntStart) {
+        world.sound = true;
+    }
+    sound = true;
+}
+
+
+///////////////////////////////////////////////////////////// SETTINGS //
+
+
+
+
+
+// START_GAME ///////////////////////////////////////////////////////////
+
+
+/**
+ * function inits the game from start screen
+ */
+function initGameFromStart() {
+    clearInterval(playBtnInterval);
+    hideStartscreen();
+    displayCanvas();
     initGame();
+}
+
+
+/**
+ * function hides the startscreen and the settings if open
+ */
+function hideStartscreen() {
+    document.getElementById('startScreen').classList.add("d-none");
+    document.getElementById('settings').classList.add('d-none');
+    document.getElementById('missionBoard').classList.add('d-none');
+    settingsClosed = true;
+}
+
+
+/**
+ * function displays the canvas, where the game is played on
+ */
+function displayCanvas() {
+    document.getElementById('canvas').classList.remove("d-none");
+    document.getElementById('controllBtns').classList.remove("d-none");
 }
 
 
@@ -64,18 +195,62 @@ function initGame() {
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-
-    document.getElementById('missionBoard').classList.remove('d-none');
-    setTimeout(() => {
-        document.getElementById('missionBoard').classList.add('d-none');
-    }, 4000);
-
     world.sound = sound;
     gameDidntStart = false;
 }
 
 
+/////////////////////////////////////////////////////////// START_GAME //
 
+
+
+
+
+// RESTART_GAME /////////////////////////////////////////////////////////
+
+
+/**
+ * function restarts the geame after it finished
+ */
+function restartGame() {
+    resetEndscreen();
+    initGame();
+    document.getElementById('controllBtns').classList.remove("d-none");
+}
+
+
+/**
+ * function takes player to start menu after the game
+ */
+function goToStartMenu() {
+    resetEndscreen();
+    document.getElementById('canvas').classList.add("d-none");
+    document.getElementById('startScreen').classList.remove("d-none");
+    animatePlayBtn();
+}
+
+
+/**
+ * function resets the endscreen
+ */
+function resetEndscreen() {
+    document.getElementById('grayscreen').classList.add("d-none");
+    document.getElementById('endscreenBtn').classList.add("d-none");
+    document.getElementById('endscreenBtn').style = "opacity: 0";
+    document.getElementById('win').classList.add("d-none");
+    document.getElementById('lose').classList.add("d-none");
+    settingsClosed = true;
+    gameDidntStart = true;
+}
+
+
+///////////////////////////////////////////////////////// RESTART_GAME //
+
+
+
+
+
+// BIND_CONTROLLS ///////////////////////////////////////////////////////
 
 
 /**
@@ -119,10 +294,6 @@ window.addEventListener('keyup', (e) => {
     }
 })
 
-function u() {
-    let z = Math.round(Math.random());
-    console.log(z);
-}
 
 /**
  * function binds control images to actual controls on mobile devices
@@ -195,203 +366,4 @@ function bindTouchSpace() {
 }
 
 
-/**
- * function animates play btn
- */
-function animatePlayBtn() {
-    playBtnI = setInterval(() => bounceTheBtn(), 1000);
-}
-
-
-/**
- * function describes the two diffrent states of the btn
- */
-function bounceTheBtn() {
-    if (playBtnBig) {
-        document.getElementById('playBtn').style = 'transform: scale(0.9)';
-        playBtnBig = false;
-    } else {
-        document.getElementById('playBtn').style = 'transform: scale(1)';
-        playBtnBig = true;
-    }
-}
-
-
-/**
- * function restarts the geame after it finished
- */
-function restartGame() {
-    resetEndscreen();
-    initGame();
-    document.getElementById('controllBtns').classList.remove("d-none");
-}
-
-
-/**
- * function takes player to start menu after the game
- */
-function goToStartMenu() {
-    resetEndscreen();
-    animatePlayBtn();
-    document.getElementById('startScreen').classList.remove("d-none");
-    document.getElementById('canvas').style = 'display: none';
-}
-
-
-/**
- * function resets the endscreen
- */
-function resetEndscreen() {
-    document.getElementById('endscreenBtn').classList.add("d-none");
-    document.getElementById('win').style = 'display: none';
-    document.getElementById('lose').style = 'display: none';
-    document.getElementById('grayscreen').classList.add("d-none");
-    document.getElementById('gameOverImg').classList.remove("d-none");
-    document.getElementById('endscreenBtn').style = "opacity: 0";
-
-    settingsClosed = true;
-    gameDidntStart = true;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function w() {
-//     for (let i = 0; i < 70; i++) {
-//         clearInterval(i);
-//     }
-// }
-
-// function d() {
-//     world.draw();
-//     world.runGame();
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//sieht soweit gut aus
-
-function showSettings() {
-    if (settingsClosed) {
-        document.getElementById('settings').style = "display: flex";
-        document.getElementById('missionBoard').classList.remove('d-none');
-        settingsClosed = false;
-    } else {
-        document.getElementById('settings').style = "display: none";
-        document.getElementById('missionBoard').classList.add('d-none');
-        settingsClosed = true;
-    }
-
-}
-
-
-/**
- * function displays correct volume setting
- */
-function showVolume() {
-    if (sound) {
-        document.getElementById('soundBtn').src = 'img/own_graphics/unmute.png';
-    } else {
-        document.getElementById('soundBtn').src = 'img/own_graphics/mute.png';
-    }
-}
-
-
-
-
-
-
-/**
- * function sets the volume and changes volume icon
- */
-function turnVolume() {
-    if (sound) {
-        document.getElementById('soundBtn').src = 'img/own_graphics/mute.png';
-        muteVolume();
-    } else {
-        document.getElementById('soundBtn').src = 'img/own_graphics/unmute.png';
-        addVolume();
-    }
-}
-
-
-
-
-function muteVolume() {
-    if (!gameDidntStart) {
-        world.sound = false;
-    }
-    sound = false;
-}
-
-
-function addVolume() {
-    if (!gameDidntStart) {
-        world.sound = true;
-    }
-    sound = true;
-}
+/////////////////////////////////////////////////////// BIND_CONTROLLS //
