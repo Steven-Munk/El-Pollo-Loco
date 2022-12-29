@@ -7,7 +7,54 @@ class MoveableObject extends AllObjects {
     energy = 5;
     noRecentHit = true;
 
-    
+
+
+    constructor() {
+        super();
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * function repeatly goes through array (images of array)
      * @param {Array} images 
@@ -27,7 +74,7 @@ class MoveableObject extends AllObjects {
         this.x += this.speed;
     }
 
-    
+
     /**
      * function decreases x of calling object
      */
@@ -98,9 +145,9 @@ class MoveableObject extends AllObjects {
      */
     isColliding(mo) {
         return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
-        this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
-        this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
-        this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
+            this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
     }
 
 

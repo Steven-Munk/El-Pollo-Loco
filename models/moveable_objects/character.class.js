@@ -87,17 +87,24 @@ class Character extends MoveableObject {
 
 
     constructor() {
-        super().loadImage('img/2_character_pepe/2_walk/W-21.png');
+        super();
+        this.loadAllImages();
+        this.applyGravity();
+        this.animate();
+    }
 
+
+    /**
+     * function loads all images of pepe
+     */
+    loadAllImages() {
+        this.loadImage(this.IMAGES_SHORT_WAIT[0]);
         this.loadImages(this.IMAGES_SHORT_WAIT);
         this.loadImages(this.IMAGES_LONG_WAIT);
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-
-        this.applyGravity();
-        this.animate();
     }
 
 

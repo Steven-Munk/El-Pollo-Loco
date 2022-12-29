@@ -14,11 +14,12 @@ class World {
     coinBar = new CoinBar();
     coinAmount = 0;
 
-    thrownBottle = new ThrownBottle();
+    newThrow = true;
     allThrownBottles = [];
     bottleAmmo = 0;
 
     level = level1;
+    allObjects = new AllObjects();
 
     drawTheGame;
     gameInterval;
@@ -167,8 +168,8 @@ class World {
     setWorld() {
         this.character.world = this;
         this.level.enemies[0].world = this;
+        this.allObjects.world = this;
         setInterval(() => {
-            this.thrownBottle.world = this;
             this.allThrownBottles.forEach((bottle) => {
                 bottle.world = this;
             })
@@ -181,7 +182,7 @@ class World {
      */
     runGame() {
         this.gameInterval = setInterval(() => this.updateGame60Times(), 1000 / 60);
-     }
+    }
 
 
     /**
@@ -190,10 +191,38 @@ class World {
     updateGame60Times() {
         this.checkCollisions();
         this.checkCollections();
-        this.throwOnSpace();
+        this.checkBottleThrow();
         this.checkGameOver();
         this.setSound();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     /**
@@ -205,55 +234,9 @@ class World {
         this.checkBottleCollision();
     }
 
-
     /**
-     * function checks if pepe collects anything
-     */
-    checkCollections() {
-        this.checkBottleCollection();
-        this.checkCoinCollection();
-    }
-
-
-
-
-    newThrow = true;
-
-
-    /**
-     * function throws a bottle if SPACE is hit
-     */
-    throwOnSpace() {
-        if (this.keyboard.SPACE && this.bottleAmmo > 0 && this.newThrow) {
-
-
-
-            this.newThrow = false;
-
-            this.playGameSound(2);
-            let newBottle = new ThrownBottle(this.character.x + 60, this.character.y + 100)
-            this.allThrownBottles.push(newBottle);
-            this.bottleAmmo--;
-            this.bottleBar.updateStatusBar(this.bottleBar.IMAGES_BOTTLE_BAR, this.bottleAmmo);
-            
-            setTimeout(() => {
-                let bottleIndex = this.allThrownBottles.indexOf(newBottle);
-                this.allThrownBottles.splice(bottleIndex, 1);
-            }, 2000);
-
-
-        }
-
-        if (!this.keyboard.SPACE) {
-            this.newThrow = true;
-        }
-
-    }
-
-
-    /**
-     * function checks if pepe collides with any enemy
-     */
+  * function checks if pepe collides with any enemy
+  */
     checkEnemyCollision() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.jumpsOn(enemy)) {
@@ -355,6 +338,53 @@ class World {
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * function check if any thrown bottle hitted something
      */
@@ -370,13 +400,32 @@ class World {
 
 
     /**
+ * function check if any thrown bottle hitted something
+ */
+    checkBottleCollision() {
+        this.allThrownBottles.forEach((bottle) => {
+            this.level.enemies.forEach((enemy) => {
+                if (bottle.isColliding(enemy) && !bottle.bottleHitSomething) {
+                    this.bottleHit(bottle, enemy);
+                }
+            })
+        })
+    }
+
+
+    /**
      * function checks if bottle hit normal chicken or boss and lets bottle splash
      * @param {Object} bottle 
      * @param {Object} enemy 
      */
     bottleHit(bottle, enemy) {
+
+
+
         bottle.bottleHitSomething = true;
         let bottleIndex = this.allThrownBottles.indexOf(bottle);
+
+
         setTimeout(() => {
             this.allThrownBottles.splice(bottleIndex, 1);
         }, 1000);
@@ -410,6 +459,38 @@ class World {
             let positionOfBottle = this.allThrownBottles.indexOf(bottle)
             this.allThrownBottles.splice(positionOfBottle, 1);
         }, 300);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+   * function checks if pepe collects anything
+   */
+    checkCollections() {
+        this.checkBottleCollection();
+        this.checkCoinCollection();
     }
 
 
@@ -459,6 +540,112 @@ class World {
         this.coinAmount++;
         this.coinBar.updateStatusBar(this.coinBar.IMAGES_COIN_BAR, this.coinAmount);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+      * function throws a bottle if SPACE is hit
+      */
+    checkBottleThrow() {
+
+        this.throwBottle();
+
+        this.deleteBottleIfMissed();
+
+
+    }
+
+
+    /**
+     * function throws one bottle at space pressed
+     */
+    throwBottle() {
+        if (this.keyboard.SPACE && this.bottleAmmo > 0 && this.newThrow) {
+            this.newThrow = false;
+            this.addThrownBottle();
+        }
+        if (!this.keyboard.SPACE) {
+            this.newThrow = true;
+        }
+    }
+
+
+    /**
+     * funciton adds a thrown bottle to canvas and updates bottle ammo
+     */
+    addThrownBottle() {
+        this.playGameSound(2);
+        let newBottle = new ThrownBottle(this.character.x + 60, this.character.y + 100)
+        this.allThrownBottles.push(newBottle);
+        this.bottleAmmo--;
+        this.bottleBar.updateStatusBar(this.bottleBar.IMAGES_BOTTLE_BAR, this.bottleAmmo);
+    }
+
+
+    /**
+     * function deletes a bottle form array if missed
+     */
+    deleteBottleIfMissed() {
+        this.allThrownBottles.forEach(bottle => {
+            if (bottle.y > 480 && bottle.bottleHit) {
+                let bottleIndex = this.allThrownBottles.indexOf(bottle);
+                this.allThrownBottles.splice(bottleIndex, 1);
+            }
+        })
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -577,6 +764,18 @@ class World {
             document.getElementById('lose').classList.remove("d-none");
         }, 1500);
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
