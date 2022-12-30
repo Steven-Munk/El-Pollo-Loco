@@ -399,6 +399,7 @@ class World {
     }
 
 
+
     /**
  * function check if any thrown bottle hitted something
  */
@@ -423,12 +424,8 @@ class World {
 
 
         bottle.bottleHitSomething = true;
-        let bottleIndex = this.allThrownBottles.indexOf(bottle);
 
 
-        setTimeout(() => {
-            this.allThrownBottles.splice(bottleIndex, 1);
-        }, 1000);
 
 
         this.playGameSound(3);
