@@ -8,53 +8,6 @@ class MoveableObject extends AllObjects {
     noRecentHit = true;
 
 
-
-    constructor() {
-        super();
-
-
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * function repeatly goes through array (images of array)
      * @param {Array} images 
