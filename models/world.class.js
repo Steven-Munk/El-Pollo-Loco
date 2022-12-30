@@ -195,35 +195,7 @@ class World {
         this.checkGameOver();
         this.setSound();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
      * function checks if anything collides (Pepe, Thrown Bottles, Enemies)
@@ -336,54 +308,7 @@ class World {
             this.noRecentHit = true;
         }, 1500);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
      * function check if any thrown bottle hitted something
@@ -420,14 +345,7 @@ class World {
      * @param {Object} enemy 
      */
     bottleHit(bottle, enemy) {
-
-
-
         bottle.bottleHitSomething = true;
-
-
-
-
         this.playGameSound(3);
         if (this.bottleHitBoss(bottle)) {
             this.level.enemies[0].bossGetsHit();
@@ -457,34 +375,11 @@ class World {
             this.allThrownBottles.splice(positionOfBottle, 1);
         }, 300);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
-   * function checks if pepe collects anything
-   */
+     * function checks if pepe collects anything
+     */
     checkCollections() {
         this.checkBottleCollection();
         this.checkCoinCollection();
@@ -537,47 +432,7 @@ class World {
         this.coinAmount++;
         this.coinBar.updateStatusBar(this.coinBar.IMAGES_COIN_BAR, this.coinAmount);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
       * function throws a bottle if SPACE is hit
@@ -629,47 +484,7 @@ class World {
             }
         })
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
      * function checks if either pepe or boss died
@@ -761,46 +576,7 @@ class World {
             document.getElementById('lose').classList.remove("d-none");
         }, 1500);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     setSound() {
         if (this.sound) {
@@ -815,14 +591,6 @@ class World {
             this.gameMusic.volume = 0;
         }
     }
-
-
-
-
-
-
-
-
 
 
     /**
