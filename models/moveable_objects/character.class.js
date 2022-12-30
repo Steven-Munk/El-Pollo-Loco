@@ -6,7 +6,6 @@ class Character extends MoveableObject {
     height = 300;
     speed = 8;
     waitingTime = 0;
-    world;
     mainI;
 
     IMAGES_SHORT_WAIT = [
