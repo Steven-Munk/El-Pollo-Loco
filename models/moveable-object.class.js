@@ -29,8 +29,8 @@ class MoveableObject extends AllObjects {
     }
 
     /**
-  * function checks if pepe collides with any enemy
-  */
+     * function checks if pepe collides with any enemy
+     */
     checkEnemyCollision() {
         world.level.enemies.forEach((enemy) => {
             if (world.character.jumpsOn(enemy)) {
@@ -130,7 +130,7 @@ class MoveableObject extends AllObjects {
             world.noRecentHit = true;
         }, 1500);
     }
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
     /**
      * function check if any thrown bottle hitted something
@@ -265,7 +265,7 @@ class MoveableObject extends AllObjects {
      */
     hit() {
         if (this.noRecentHit) {
-            this.energy -= 0;
+            this.energy -= 1;
             this.noRecentHit = false;
             setTimeout(() => {
                 this.noRecentHit = true;

@@ -7,13 +7,14 @@ class Endboss extends MoveableObject {
     speed = 0.7;
 
     i = 0;
-    firstEncounter = true;
-    noRecentHit = true;
     mainI;
     energy = 2; // dont get confused by the 2, the boss dies after 3 hits!
+    
+    firstEncounter = true;
+    noRecentHit = true;
     died = false;
-
     bossIsWalking = false;
+
     world;
 
     IMAGES_ALERT = [

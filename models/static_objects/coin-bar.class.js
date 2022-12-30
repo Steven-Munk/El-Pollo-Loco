@@ -20,5 +20,4 @@ class CoinBar extends StatusBars {
 
         this.updateStatusBar(this.IMAGES_COIN_BAR, 0); 
     }
-    
 }

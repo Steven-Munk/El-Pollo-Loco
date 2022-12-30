@@ -76,7 +76,6 @@ class Character extends MoveableObject {
     pepeJumpSound = new Audio('audio/Pepe_jump.mp3');
     allSoundsPepe = [this.walking_sound, this.pepeGrunt, this.pepeJumpSound];
 
-
     offset = {
         top: 140,
         bottom: 15,

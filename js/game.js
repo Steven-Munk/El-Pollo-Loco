@@ -5,7 +5,7 @@ let keyboard = new Keyboard();
 let playBtnInterval;
 let playBtnBig = true;
 
-let sound = false;
+let sound = true;
 
 let settingsClosed = true;
 
@@ -23,11 +23,7 @@ function init() {
 }
 
 
-
-
-
 // STARTSCREEN ///////////////////////////////////////////////////////////
-
 
 /**
  * function makes sure the user is in landscape mode
@@ -65,15 +61,9 @@ function animatePlayBtn() {
     }
 }
 
-
 /////////////////////////////////////////////////////////// STARTSCREEN //
 
-
-
-
-
 // SETTINGS /////////////////////////////////////////////////////////////
-
 
 /**
  * function renders settings onclick
@@ -147,15 +137,9 @@ function addVolume() {
     sound = true;
 }
 
-
 ///////////////////////////////////////////////////////////// SETTINGS //
 
-
-
-
-
 // START_GAME ///////////////////////////////////////////////////////////
-
 
 /**
  * function inits the game from start screen
@@ -199,15 +183,9 @@ function initGame() {
     gameDidntStart = false;
 }
 
-
 /////////////////////////////////////////////////////////// START_GAME //
 
-
-
-
-
 // RESTART_GAME /////////////////////////////////////////////////////////
-
 
 /**
  * function restarts the geame after it finished
@@ -243,15 +221,9 @@ function resetEndscreen() {
     gameDidntStart = true;
 }
 
-
 ///////////////////////////////////////////////////////// RESTART_GAME //
 
-
-
-
-
 // BIND_CONTROLLS ///////////////////////////////////////////////////////
-
 
 /**
  * Keyboard Press
@@ -364,6 +336,5 @@ function bindTouchSpace() {
         keyboard.SPACE = false;
     })
 }
-
 
 /////////////////////////////////////////////////////// BIND_CONTROLLS //

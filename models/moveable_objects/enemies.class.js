@@ -11,7 +11,6 @@ class Enemy extends MoveableObject {
         right: 0
     };
 
-
     IMAGES_WALKING = {
         'chickenBig': [
             'img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
@@ -24,7 +23,6 @@ class Enemy extends MoveableObject {
             'img/3_enemies_chicken/chicken_small/1_walk/3_w.png'
         ]
     };
-
 
     IMAGE_DEAD = {
         'chickenBig': 'img/3_enemies_chicken/chicken_normal/2_dead/dead.png',
