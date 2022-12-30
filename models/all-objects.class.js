@@ -8,7 +8,71 @@ class AllObjects {
     imageCache = {};
     currentImage = 0;
     world;
- 
+
+    
+    constructor() {
+        setInterval(() => {
+            this.checkCollections();
+        }, 1000 / 30);
+    }
+
+
+    /**
+     * function checks if pepe collects anything
+     */
+    checkCollections() {
+            this.checkBottleCollection();
+            this.checkCoinCollection();
+    }
+
+
+    /**
+     * function checks if pepe collects a bottle
+     */
+    checkBottleCollection() {
+        world.level.bottles.forEach((bottle) => {
+            if (world.character.isColliding(bottle)) {
+                this.collectBottle(bottle);
+            }
+        })
+    }
+
+
+    /**
+     * function lets pepe collect touched bottle
+     * @param {Object} bottle 
+     */
+    collectBottle(bottle) {
+        let collectedBottle = world.level.bottles.indexOf(bottle);
+        world.level.bottles.splice(collectedBottle, 1);
+        world.bottleAmmo++;
+        world.bottleBar.updateStatusBar(world.bottleBar.IMAGES_BOTTLE_BAR, world.bottleAmmo);
+    }
+
+
+    /**
+    * function checks if pepe collects a coin
+    */
+    checkCoinCollection() {
+        world.level.coins.forEach((coin) => {
+            if (world.character.isColliding(coin)) {
+                this.collectCoin(coin);
+            }
+        })
+    }
+
+
+    /**
+     * function lets pepe collect touched coin
+     * @param {Object} coin
+     */
+    collectCoin(coin) {
+        let collectedCoin = world.level.coins.indexOf(coin);
+        world.level.coins.splice(collectedCoin, 1);
+        world.coinAmount++;
+        world.coinBar.updateStatusBar(world.coinBar.IMAGES_COIN_BAR, world.coinAmount);
+    }
+
 
     /**
      * Loads the image in parameter

@@ -94,14 +94,6 @@ class ThrownBottle extends MoveableObject {
      * function animates bottle on the flight and on hit
      */
     animate() {
-
-
-
-
-
-
-
-
         setInterval(() => {
             if (this.bottleHitSomething) {
                 this.playAnimation(this.IMAGES_BOTTLE_SPALSH);
@@ -109,11 +101,5 @@ class ThrownBottle extends MoveableObject {
                 this.playAnimation(this.IMAGES_BOTTLE_ROTATION);
             }
         }, 1000/ 20);
-
-
-
-
-
-        
     }
 }

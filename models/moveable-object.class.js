@@ -13,18 +13,7 @@ class MoveableObject extends AllObjects {
         setTimeout(() => {
             this.checkCollisions();
         }, 1000);
-
-
-    
-    
-    
-    
     }
-
-
-
-
-
 
 
     /**
@@ -43,11 +32,6 @@ class MoveableObject extends AllObjects {
   * function checks if pepe collides with any enemy
   */
     checkEnemyCollision() {
-
-
-
-
-
         world.level.enemies.forEach((enemy) => {
             if (world.character.jumpsOn(enemy)) {
                 this.killChicken(enemy);
@@ -215,157 +199,6 @@ class MoveableObject extends AllObjects {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * function repeatly goes through array (images of array)
      * @param {Array} images 
@@ -467,10 +300,10 @@ class MoveableObject extends AllObjects {
      * @returns true if object that calls this function lands on top of object in parameter
      */
     jumpsOn(mo) {
-        return this.x + this.width > mo.x &&
-            this.x < mo.x + mo.width &&
-            this.y + this.height + 5 >= mo.y - 5 &&           // 20px vertical Hitbox on Head of enemy
-            this.y + this.height - 5 <= mo.y + 5 &&           // 20px vertical Hitbox on Head of enemy
-            this.speedY < 0;                                  // Character has to fall
+        return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
+            this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+            this.y + this.height - this.offset.bottom + 10 >= mo.y + mo.offset.top - 10 &&  //20px hitbox on enemy head
+            this.y + this.height - this.offset.bottom - 10 <= mo.y + mo.offset.top + 10 &&  //20px hitbox on enemy head
+            this.speedY < 0;                                  
     }
 }
