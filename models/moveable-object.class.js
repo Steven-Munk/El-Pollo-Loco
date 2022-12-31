@@ -6,12 +6,14 @@ class MoveableObject extends AllObjects {
 
     energy = 5;
     noRecentHit = true;
+    collisionInterval;
 
 
     constructor() {
         super();
         setTimeout(() => {
             this.checkCollisions();
+            this.checkEndscreen();
         }, 1000);
     }
 
@@ -20,7 +22,7 @@ class MoveableObject extends AllObjects {
      * function checks if anything collides (Pepe, Thrown Bottles, Enemies)
      */
     checkCollisions() {
-        setInterval(() => {
+        this.collisionInterval = setInterval(() => {
             this.checkEnemyCollision();
             this.checkBossCollision();
             this.checkBottleCollision();
@@ -88,6 +90,7 @@ class MoveableObject extends AllObjects {
         if (this.pepeHitsBoss() && world.noRecentHit) {
             this.knocksBackPepe();
             this.bossAttackAnimation();
+            this.pepeGetsHurt();
         }
     }
 
@@ -305,5 +308,18 @@ class MoveableObject extends AllObjects {
             this.y + this.height - this.offset.bottom + 10 >= mo.y + mo.offset.top - 10 &&  //20px hitbox on enemy head
             this.y + this.height - this.offset.bottom - 10 <= mo.y + mo.offset.top + 10 &&  //20px hitbox on enemy head
             this.speedY < 0;                                  
+    }
+
+
+    /**
+     * function clears collisionInterval if game ends
+     */
+    checkEndscreen() {
+        let eInterval = setInterval(() => {
+            if(!world.gameGoesOn) {
+                clearInterval(this.collisionInterval);
+                clearInterval(eInterval);
+            }
+        }, 1000 / 30);
     }
 }
